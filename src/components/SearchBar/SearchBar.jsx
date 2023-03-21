@@ -5,10 +5,7 @@ export default function SearchBar({onSearch}) {
    let [id, idSet] = React.useState("");
 
    const handleChange = (event) => idSet(event.target.value);
-   let runOnSearch = (event) => {
-      onSearch(id);
-      event.target.value = "";
-   };
+   let runOnSearch = () => onSearch(id);
    
    return (   
       <div>
