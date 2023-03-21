@@ -8,6 +8,7 @@ export default function Cards({characters, onClose}) {
             <div>
                   <ul>{
                         characters && characters.map(character => <li><Card
+                        id={character.id}
                         key={character.id}
                         name={character.name}
                         status={character.status}

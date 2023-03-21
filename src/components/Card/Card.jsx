@@ -1,7 +1,7 @@
-export default function Card({key, name, status, species, gender, origin, image, onClose}) {
+export default function Card({id, name, status, species, gender, origin, image, onClose}) {
 
    let originName = origin.name;
-   let runOnClose = () => onClose(key)
+   let runOnClose = () => onClose(id)
 
    return (
       <div>
