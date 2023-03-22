@@ -1,12 +1,9 @@
-import {useLocation} from 'react-router-dom';
-
 export default function Error(){
-
-    const location = useLocation();
 
     return (
         <div>
-            <p>Error 404</p>
+            <h1>Error 404</h1>
+            <h2>Page was not found</h2>
         </div>
     );
 }

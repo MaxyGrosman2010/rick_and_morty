@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import {Routes, Route, useParams} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
 import './App.css';
 import Nav from './components/Nav/Nav';
 import About from './components/About/About';
@@ -39,7 +39,7 @@ function App() {
             <Route path='/home' element={<Cards characters={characters} onClose={onClose}/>}/>
             <Route path='about' element={<About/>}/>
             <Route path='/detail/:id' element={<Detail/>}/>
-            <Route path='/error' element={<Error/>}/>
+            <Route path='*' element={<Error/>}/>
          </Routes>
       </div>
    );
