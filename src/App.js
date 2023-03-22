@@ -6,6 +6,7 @@ import Nav from './components/Nav/Nav';
 import About from './components/About/About';
 import Detail from './components/Detail/Detail';
 import Cards from './components/Cards/Cards';
+import Error from './components/Error/Error';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
             <Route path='/home' element={<Cards characters={characters} onClose={onClose}/>}/>
             <Route path='about' element={<About/>}/>
             <Route path='/detail/:id' element={<Detail/>}/>
+            <Route path='/error' element={<Error/>}/>
          </Routes>
       </div>
    );
