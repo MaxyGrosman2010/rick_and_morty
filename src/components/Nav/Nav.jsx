@@ -6,13 +6,14 @@ export default function Nav({onSearch}){
     return(
         <div>
             <SearchBar onSearch={onSearch}/>
-            <button onClick={() => onSearch(Math.random(287))}>Random</button>
+            <button onClick={() => onSearch(Math.floor(Math.random() * 286))}>Random</button>
             <NavLink to='/home'>
                 <button>Home</button>
             </NavLink>
             <NavLink to='/about'>
                 <button>About</button>
             </NavLink>
+
             
         </div>
     );
