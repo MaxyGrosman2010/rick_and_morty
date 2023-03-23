@@ -25,9 +25,11 @@ export default function Form({login}){
             <form onSubmit={handleSubmit}>
                 <label>Email: </label>
                 <input name="email" type="text" value={userData.email} onChange={handleChange}/>
+                <p>{errors.email}</p>
 
                 <label>Password: </label>
                 <input name="password" type="text" value={userData.password} onChange={handleChange}/>
+                <p>{errors.password}</p>
 
                 <button name="submit" type="submit">Submit</button>
             </form>
