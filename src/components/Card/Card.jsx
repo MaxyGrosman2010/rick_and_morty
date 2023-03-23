@@ -2,9 +2,6 @@ import {Link} from 'react-router-dom';
 
 export default function Card({id, name, status, species, gender, origin, image, onClose}) {
 
-   let originName = origin.name;
-
-
    return (
       <div>
          <button onClick={() => onClose(id)} >X</button>
@@ -14,7 +11,7 @@ export default function Card({id, name, status, species, gender, origin, image, 
          <h2>{status}</h2>
          <h2>{species}</h2>
          <h2>{gender}</h2>
-         <h2>{originName}</h2>
+         <h2>{origin.name}</h2>
          <img src={image} alt={name}/>
       </div>
    );

@@ -55,6 +55,7 @@ function App() {
    return (
       <div className='App'>
          <Nav onSearch={onSearch} logout={logout} />
+         
          <Routes>
             <Route path='/' element={<Form login={login} />}/>
             <Route path='/home' element={<Cards characters={characters} onClose={onClose}/>}/>

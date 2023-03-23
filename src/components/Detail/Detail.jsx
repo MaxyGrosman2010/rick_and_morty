@@ -6,6 +6,7 @@ export default function Detail(){
     const {id} = useParams();
     const [character, setCharacter] = useState({});
     const [isLoading, setLoading] = useState(true);
+    const {name, status, species, gender, image, origin} = character;
 
     useEffect(() => {
         axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
@@ -20,10 +21,6 @@ export default function Detail(){
      }, [id]);
 
      if(isLoading) return <div>Loading...</div>
-
-     
-     const {name, status, species, gender, image, origin} = character;
-
 
     return(
         <div>
