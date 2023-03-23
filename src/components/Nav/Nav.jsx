@@ -1,7 +1,7 @@
 import SearchBar from "../SearchBar/SearchBar";
 import { Link, useLocation } from "react-router-dom";
 
-export default function Nav({onSearch}){
+export default function Nav({onSearch, logout}){
 
     let location = useLocation();
 
@@ -20,7 +20,7 @@ export default function Nav({onSearch}){
                 <button>About</button>
             </Link>
 
-            <button>Log out</button>
+            <button onClick={logout}>Log out</button>
 
             
         </div>
