@@ -13,7 +13,7 @@ export default function validation(inputs){
 
         }else errors.email = "Es muy largo para ser un email";
     }
-
+    
     if(inputs.password){
 
         if(!regexPassword.test(inputs.password)) errors.password = "No cumple las condiciones para ser un password";
