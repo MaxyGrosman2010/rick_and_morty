@@ -20,7 +20,8 @@ export default function Nav({onSearch, logout}){
             <button onClick={logout}>Log out</button>
             
             <SearchBar onSearch={onSearch}/>
-            <button onClick={() => onSearch(Math.floor(Math.random() * 826))}>Random</button>            
+            <button onClick={() => onSearch(Math.floor(Math.random() * 826))}>Random</button>
+            
         </div>
     );
 }

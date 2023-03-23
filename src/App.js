@@ -11,7 +11,7 @@ import Form from './components/Form/Form';
 
 function App() {
 
-   let [characters, setCharacters] = React.useState([]);
+   const [characters, setCharacters] = React.useState([]);
    const [access, setAccess] = React.useState(false);
    const navigate = useNavigate();
    const EMAIL = "max@gmail.com";
