@@ -31,9 +31,8 @@ function App() {
       });
    };
 
-   const onClose = (id) => {
-      setCharacters(characters.filter(character => parseInt(character.id) !== parseInt(id)));
-   };
+   const onClose = (id) => setCharacters(characters.filter(character =>
+      parseInt(character.id) !== parseInt(id)));
 
    const login = ( userData ) => {
 
