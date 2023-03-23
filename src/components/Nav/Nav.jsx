@@ -9,9 +9,6 @@ export default function Nav({onSearch, logout}){
 
     return(
         <div>
-            <SearchBar onSearch={onSearch}/>
-            <button onClick={() => onSearch(Math.floor(Math.random() * 826))}>Random</button>
-
             <Link to='/home'>
                 <button>Home</button>
             </Link>
@@ -21,6 +18,11 @@ export default function Nav({onSearch, logout}){
             </Link>
 
             <button onClick={logout}>Log out</button>
+            
+            <SearchBar onSearch={onSearch}/>
+            <button onClick={() => onSearch(Math.floor(Math.random() * 826))}>Random</button>
+
+            
 
             
         </div>
