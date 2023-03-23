@@ -17,7 +17,13 @@ export default function Form({login}){
     const handleSubmit = (event) => {
 
         event.preventDefault();
-        login(userData);
+        let errors = Object.values(errors);
+
+        if(errors === 0){
+            login(userData);
+            setData({email: "", password: ""});
+            setErrors({});
+        }else window.alert("El usuario/password no son validos")
     };
 
     return(
