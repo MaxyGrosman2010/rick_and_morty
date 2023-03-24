@@ -1,4 +1,4 @@
-import SearchBar from "../SearchBar/SearchBar";
+import SearchBar from "./SearchBar/SearchBar";
 import { Link, useLocation } from "react-router-dom";
 
 export default function Nav({onSearch, logout}){
