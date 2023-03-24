@@ -12,13 +12,15 @@ export default function validation(inputs){
             else errors.email = "";
 
         }else errors.email = "Es muy largo para ser un email";
-    }
+        
+    }else errors.email = "Debe ingresar un email";
     
     if(inputs.password){
 
         if(!regexPassword.test(inputs.password)) errors.password = "No cumple las condiciones para ser un password";
         else errors.password = "";
-    }
+
+    } else errors.password = "Debe ingresar una password";
 
     return errors;
 }

@@ -19,10 +19,12 @@ export default function Form({login}){
         event.preventDefault();
         let errors = Object.values(errors);
 
-        if(errors === 0){
+        if(errors.length === 0){
+            
             login(userData);
             setData({email: "", password: ""});
             setErrors({});
+
         }else window.alert("El usuario/password no son validos")
     };
 

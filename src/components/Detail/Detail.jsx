@@ -20,7 +20,7 @@ export default function Detail(){
         return setCharacter({});
      }, [id]);
 
-     if(isLoading) return <div>Loading...</div>
+     if(isLoading) return <div>Loading...</div>;
 
     return(
         <div>
