@@ -17,9 +17,9 @@ export default function Form({login}){
     const handleSubmit = (event) => {
 
         event.preventDefault();
-        let errors = Object.values(errors);
+        const error = Object.values(errors);
 
-        if(errors.length === 0){
+        if(error.length === 0){
             
             login(userData);
             setData({email: "", password: ""});
@@ -39,8 +39,7 @@ export default function Form({login}){
                 <input name="password" type="text" value={userData.password} onChange={handleChange}/>
                 <p>{errors.password}</p>
 
-                {Object.values(errors).length === 0 ?
-                <button name="submit" type="submit">Submit</button> : null}
+                <button name="submit" type="submit">Submit</button>
             </form>
         </div>
     );

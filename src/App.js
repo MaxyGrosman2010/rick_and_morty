@@ -19,19 +19,15 @@ function App() {
 
    const onSearch = (id) => {
       axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
-         if (data.name) {
 
-            if(characters.find(character => character.id === data.id))
-               window.alert(`${data.id} ya existe`);
-            else setCharacters((oldChars) => [...oldChars, data]);
+         if (data.name) characters.find(character => character.id === data.id) ?
+               window.alert(`${data.id} ya existe`) : setCharacters((oldChars) => [...oldChars, data]);
+         else window.alert("¡No hay un ID!");
 
-         } else {
-            window.alert('¡No hay personajes con este ID!');
-         }
       });
    };
 
-   const onClose = (id) => setCharacters(characters.filter(character =>
+   const onClose = (id) => setCharacters(characters.filter(character => 
       parseInt(character.id) !== parseInt(id)));
 
    const login = ( userData ) => {
