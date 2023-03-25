@@ -10,12 +10,12 @@ export default function Detail(){
 
     useEffect(() => {
         axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
+
            if (data.name) {
               setCharacter(data);
               setLoading(false);
-           } else {
-              window.alert('No hay personajes con ese ID');
-           }
+           } else window.alert('No hay personajes con ese ID');
+
         });
         return setCharacter({});
      }, [id]);

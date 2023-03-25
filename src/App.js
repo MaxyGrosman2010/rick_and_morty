@@ -50,7 +50,7 @@ function App() {
    return (
       <div className='App'>
          <Nav onSearch={onSearch} logout={logout} />
-         
+         {/* <link rel="stylesheet" href="https://use.typekit.net/zoz7gnu.css"></link> */}
          <Routes>
             <Route path='/' element={<Form login={login} />}/>
             <Route path='/home' element={<Cards characters={characters} onClose={onClose}/>}/>
