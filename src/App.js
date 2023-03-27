@@ -8,6 +8,7 @@ import Detail from './components/Detail/Detail';
 import Cards from './components/Cards/Cards';
 import Error from './components/Error/Error';
 import Form from './components/Form/Form';
+import Favorites from './components/Favorites/favorites';
 
 function App() {
 
@@ -57,6 +58,7 @@ function App() {
             <Route path='about' element={<About/>}/>
             <Route path='/detail/:id' element={<Detail/>}/>
             <Route path='*' element={<Error/>}/>
+            <Route path='/favorites' element={<Favorites />}/>
          </Routes>
       </div>
    );

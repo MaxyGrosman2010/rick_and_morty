@@ -39,7 +39,8 @@ export default function Form({login}){
                 <input name="password" type="text" value={userData.password} onChange={handleChange}/>
                 <p>{errors.password}</p>
 
-                {userData.email !== "" && Object.keys(errors).length === 0 && <button name="submit" type="submit">Submit</button>}
+                {userData.email !== "" && Object.keys(errors).length === 0 &&
+                <button name="submit" type="submit">Submit</button>}
             </form>
         </div>
     );
