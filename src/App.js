@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {Routes, Route, useNavigate} from 'react-router-dom';
 import {connect} from 'react-redux';
 import axios from 'axios';
@@ -10,7 +10,7 @@ import Cards from './components/Cards/Cards';
 import Error from './components/Error/Error';
 import Form from './components/Form/Form';
 import Favorites from './components/Favorites/favorites';
-import { removeFav } from './components/redux/actions';
+import { removeFav } from './components/redux/actions/actions';
 
 function App({removeFav}) {
 
@@ -48,7 +48,7 @@ function App({removeFav}) {
       navigate(`/`);
    };
 
-   useEffect(() => {
+   React.useEffect(() => {
       !access && navigate('/');
    }, [access]);
 

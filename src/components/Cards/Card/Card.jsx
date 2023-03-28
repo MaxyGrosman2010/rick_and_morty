@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {addFav, removeFav} from '../../redux/actions';
+import {addFav, removeFav} from '../../redux/actions/actions';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
