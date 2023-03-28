@@ -1,4 +1,4 @@
-import { ADD_FAV, REMOVE_FAV, ONCLOSE, ADD_CHAR } from "./types";
+import { ADD_FAV, REMOVE_FAV} from "../actions/types";
 
 const initialState ={
     allCharacters: [],

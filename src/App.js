@@ -23,8 +23,6 @@ function App({removeFav}) {
    const onSearch = (id) => {
       axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
 
-         console.log(data);
-
          if (data.name) characters.find(character => character.id === data.id) ?
                window.alert(`${data.id} ya existe`) : setCharacters((oldChars) => [...oldChars, data]);
          else window.alert("¡No hay un ID!");
