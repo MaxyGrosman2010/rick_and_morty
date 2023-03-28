@@ -1,6 +1,7 @@
-import { ADD_FAV, REMOVE_FAV, ONCLOSE } from "./types";
+import { ADD_FAV, REMOVE_FAV, ONCLOSE, ADD_CHAR } from "./types";
 
 const initialState ={
+    allCharacters: [],
     myFavorite: []
 };
 
@@ -18,13 +19,6 @@ export const rootReducer = (state = initialState, {type, payload}) => {
                 myFavorite: state.myFavorite.filter(character =>
                     parseInt(character.id) !== parseInt(payload))
             };
-
-        case ONCLOSE:
-            return{
-                ...state,
-                myFavorite: state.myFavorite.filter(character => 
-                    parseInt(character.id) !== parseInt(payload))
-            }
 
         default:
             return {...state};

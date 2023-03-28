@@ -1,8 +1,5 @@
-export const ONCLOSE = "ONCLOSE";
-// const ONSEARCH = "ONSEARCH";
-// const LOGIN = "LOGIN";
-// const LOGOUT = "LOGOUT";
-// const HANDLECHANGE= "HANDLECHANGE";
-// const HANDLESUBMIT = "HANDLESUBMIT";
+// export const ONCLOSE = "ONCLOSE";
 export const ADD_FAV= "ADD_FAV";
 export const REMOVE_FAV= "REMOVE_FAV";
+// export const ADD_CHAR= "ADD_CHAR";
+// export const REMOVE_CHAR = "REMOVE_CHAR";

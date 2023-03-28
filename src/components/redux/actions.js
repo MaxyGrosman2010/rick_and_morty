@@ -1,4 +1,4 @@
-import { ADD_FAV, REMOVE_FAV, ONCLOSE } from "./types";
+import { ADD_FAV, REMOVE_FAV} from "./types";
 
 export const addFav = (character) => {
     return {
@@ -11,10 +11,3 @@ export const removeFav = (id) => {
         type: REMOVE_FAV,
         payload: id
 }};
-
-export const onClose = (id) => {
-    return{
-        type: ONCLOSE,
-        payload: id
-    };
-}

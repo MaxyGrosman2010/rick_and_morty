@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import {Routes, Route, useNavigate} from 'react-router-dom';
+import {connect} from 'react-redux';
 import axios from 'axios';
 import './App.css';
 import Nav from './components/Nav/Nav';
@@ -9,8 +10,9 @@ import Cards from './components/Cards/Cards';
 import Error from './components/Error/Error';
 import Form from './components/Form/Form';
 import Favorites from './components/Favorites/favorites';
+import { removeFav } from './components/redux/actions';
 
-function App() {
+function App({removeFav}) {
 
    const [characters, setCharacters] = React.useState([]);
    const [access, setAccess] = React.useState(false);
@@ -21,6 +23,8 @@ function App() {
    const onSearch = (id) => {
       axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
 
+         console.log(data);
+
          if (data.name) characters.find(character => character.id === data.id) ?
                window.alert(`${data.id} ya existe`) : setCharacters((oldChars) => [...oldChars, data]);
          else window.alert("¡No hay un ID!");
@@ -28,8 +32,10 @@ function App() {
       });
    };
 
-   const onClose = (id) => setCharacters(characters.filter(character => 
-      parseInt(character.id) !== parseInt(id)));
+   const onClose = (id) => {
+      setCharacters(characters.filter(character => parseInt(character.id) !== parseInt(id)));
+      removeFav(id);
+   };
 
    const login = ( userData ) => {
 
@@ -58,10 +64,10 @@ function App() {
             <Route path='about' element={<About/>}/>
             <Route path='/detail/:id' element={<Detail/>}/>
             <Route path='*' element={<Error/>}/>
-            <Route path='/favorites' element={<Favorites />}/>
+            <Route path='/favorites' element={<Favorites onClose={onClose}/>}/>
          </Routes>
       </div>
    );
 }
 
-export default App;
+export default connect(null, {removeFav})(App);

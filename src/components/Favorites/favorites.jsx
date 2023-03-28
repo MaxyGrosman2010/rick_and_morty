@@ -1,8 +1,7 @@
-import { connect} from 'react-redux';
-import { onClose } from '../redux/actions';
+import {connect} from 'react-redux';
 import Card from '../Cards/Card/Card';
 
-function Favorites({myFavorite, onClose}){
+function Favorites({onClose, myFavorite}){
     return(
         <div>
             <ul>
@@ -22,9 +21,10 @@ function Favorites({myFavorite, onClose}){
 }
 
 function mapStateToProps(state){
-    return {
-        myFavorite: state.myFavorite
-    }
-}
 
-export default connect(mapStateToProps, {onClose})(Favorites);
+    return {
+       myFavorite: state.myFavorite
+    }
+ };
+
+export default connect(mapStateToProps)(Favorites);
