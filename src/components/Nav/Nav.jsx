@@ -1,9 +1,12 @@
-import SearchBar from "./SearchBar/SearchBar";
 import { Link, useLocation } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import SearchBar from "./SearchBar/SearchBar";
+import { onSearch } from "../redux/actions/actions";
 
-export default function Nav({onSearch, logout}){
+export default function Nav({ logout }){
 
     let location = useLocation();
+    const dispatch = useDispatch();    
 
     if(location.pathname === `/`) return null;
 
@@ -23,8 +26,8 @@ export default function Nav({onSearch, logout}){
 
             <button onClick={logout}>Log out</button>
             
-            <SearchBar onSearch={onSearch}/>
-            <button onClick={() => onSearch(Math.floor(Math.random() * 826))}>Random</button>
+            <SearchBar />
+            <button onClick={() => dispatch(onSearch(Math.floor(Math.random() * 826)))}>Random</button>
             
         </div>
     );

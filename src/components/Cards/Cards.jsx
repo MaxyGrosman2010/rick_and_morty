@@ -1,8 +1,9 @@
 import Card from './Card/Card';
+import {useSelector} from 'react-redux';
 
+export default function Cards() {
 
-
-export default function Cards({characters, onClose}) {
+      const characters = useSelector((state) => state.allCharacter);
 
       return (
             <div>
@@ -15,8 +16,7 @@ export default function Cards({characters, onClose}) {
                         species={character.species}
                         gender={character.gender}
                         origin={character.origin}
-                        image={character.image}
-                        onClose={onClose}/></li>)
+                        image={character.image}/></li>)
                   }</ul>
             </div>
       );

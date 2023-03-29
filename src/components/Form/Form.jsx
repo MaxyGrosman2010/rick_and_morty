@@ -31,6 +31,7 @@ export default function Form({login}){
     return(
         <div>
             <form onSubmit={handleSubmit}>
+                
                 <label>Email: </label>
                 <input name="email" type="text" value={userData.email} onChange={handleChange}/>
                 <p>{errors.email}</p>

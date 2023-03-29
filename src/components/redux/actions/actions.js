@@ -1,7 +1,8 @@
-import { ADD_FAV, REMOVE_FAV, FILTER_CARDS, ORDER_CARDS} from "./types";
+import { ADD_FAV, REMOVE_FAV, FILTER_CARDS, ORDER_CARDS, ON_SEARCH, ON_CLOSE} from "./types";
+import axios from "axios";
 
 export const addFav = (character) => {
-    return {
+    return{
         type: ADD_FAV,
         payload: character
 }};
@@ -13,15 +14,32 @@ export const removeFav = (id) => {
 }};
 
 export const filterCards = (gender) => {
-    return {
+    return{
         type: FILTER_CARDS,
         payload: gender
-    }
-};
+}};
 
 export const orderCards = (order) => {
-    return {
+    return{
         type: ORDER_CARDS,
         payload: order
     }
 };
+
+export const onClose = (id) => {
+    return{
+        type: ON_CLOSE,
+        payload: id
+}};
+
+export const onSearch = (id) => {
+    return async function (dispatch){
+        
+        axios.get(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
+
+            return dispatch({
+                type: ON_SEARCH,
+                payload: data
+            })
+    });
+}};

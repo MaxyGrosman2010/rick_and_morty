@@ -9,6 +9,7 @@ export default function Detail(){
     const {name, status, species, gender, image, origin} = character;
 
     useEffect(() => {
+        
         axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
 
            if (data.name) {
@@ -17,6 +18,7 @@ export default function Detail(){
            } else window.alert('No hay personajes con ese ID');
 
         });
+
         return setCharacter({});
      }, [id]);
 

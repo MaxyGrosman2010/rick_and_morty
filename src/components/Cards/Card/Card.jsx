@@ -1,12 +1,14 @@
 import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
+import {connect, useDispatch} from 'react-redux';
 import {addFav, removeFav} from '../../redux/actions/actions';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { onClose } from '../../redux/actions/actions';
 
-function Card({id, name, status, species, gender, origin, image, onClose, addFav, removeFav, myFavorite}){
+function Card({id, name, status, species, gender, origin, image, addFav, removeFav, myFavorite}){
 
    const [isFavorite, setFavorite] = useState(false);
+   const dispatch = useDispatch();
 
    const handleFavorite = () => {
 
@@ -34,7 +36,7 @@ function Card({id, name, status, species, gender, origin, image, onClose, addFav
 
       <div key={id}>
 
-         <button onClick={() => onClose(id)} >X</button>
+         <button onClick={() => dispatch(onClose(id))} >X</button>
 
          {isFavorite ? 
          (<button onClick={handleFavorite}>❤️</button>) 
