@@ -1,7 +1,5 @@
 import React from 'react';
 import {Routes, Route, useNavigate} from 'react-router-dom';
-import {connect} from 'react-redux';
-import axios from 'axios';
 import './App.css';
 import Nav from './components/Nav/Nav';
 import About from './components/About/About';

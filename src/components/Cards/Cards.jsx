@@ -7,8 +7,8 @@ export default function Cards() {
 
       return (
             <div>
-                  <ul>{
-                        characters && characters.map(character => <li><Card
+                  {
+                        characters && characters.map(character => <Card
                         id={character.id}
                         key={character.id}
                         name={character.name}
@@ -16,8 +16,8 @@ export default function Cards() {
                         species={character.species}
                         gender={character.gender}
                         origin={character.origin}
-                        image={character.image}/></li>)
-                  }</ul>
+                        image={character.image}/>)
+                  }
             </div>
       );
 }
