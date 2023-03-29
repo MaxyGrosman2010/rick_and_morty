@@ -1,0 +1,15 @@
+.contains{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 15px;
+}
+
+.options{
+    display: flex;
+    align-items: center;
+    align-content: space-evenly;
+    justify-content: space-evenly;
+    margin: 5%;
+}

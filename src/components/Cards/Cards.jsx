@@ -1,12 +1,13 @@
-import Card from './Card/Card';
 import {useSelector} from 'react-redux';
+import Card from './Card/Card';
+import style from './Cards.module.css'
 
 export default function Cards() {
 
       const characters = useSelector((state) => state.allCharacter);
 
       return (
-            <div>
+            <div className={style.contains} >
                   {
                         characters && characters.map(character => <Card
                         id={character.id}

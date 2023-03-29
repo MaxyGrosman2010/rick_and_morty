@@ -4,6 +4,7 @@ import {addFav, removeFav} from '../../redux/actions/actions';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { onClose } from '../../redux/actions/actions';
+import style from './Card.module.css';
 
 function Card({id, name, status, species, gender, origin, image, addFav, removeFav, myFavorite}){
 
@@ -34,23 +35,23 @@ function Card({id, name, status, species, gender, origin, image, addFav, removeF
 
    return (
 
-      <div key={id}>
+      <div key={id} className={style.contains} >
 
-         <button onClick={() => dispatch(onClose(id))} >X</button>
+         <button className={style.button} onClick={() => dispatch(onClose(id))} >X</button>
 
          {isFavorite ? 
-         (<button onClick={handleFavorite}>❤️</button>) 
-         : (<button onClick={handleFavorite}>🤍</button>)}
+         (<button className={style.button} onClick={handleFavorite}>❤️</button>) 
+         : (<button className={style.button} onClick={handleFavorite}>🤍</button>)}
 
-         <Link to={`/detail/${id}`}>
-            <h2>{name}</h2>
+         <Link className={style.link} to={`/detail/${id}`}>
+            <h2 className={style.name} >{name}</h2>
          </Link>
 
-         <h2>{status}</h2>
-         <h2>{species}</h2>
-         <h2>{gender}</h2>
-         <h2>{origin.name}</h2>
-         <img src={image} alt={name}/>
+         <h2 className={style.text} >{status}</h2>
+         <h2 className={style.text} >{species}</h2>
+         <h2 className={style.text} >{gender}</h2>
+         <h2 className={style.text}>{origin.name}</h2>
+         <img className={style.image} src={image} alt={name}/>
 
       </div>
 

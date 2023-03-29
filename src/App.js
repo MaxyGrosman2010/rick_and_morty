@@ -1,6 +1,6 @@
 import React from 'react';
 import {Routes, Route, useNavigate} from 'react-router-dom';
-import './App.css';
+import style from './App.module.css';
 import Nav from './components/Nav/Nav';
 import About from './components/About/About';
 import Detail from './components/Detail/Detail';
@@ -34,7 +34,7 @@ export default function App() {
    }, [access]);
 
    return (
-      <div className='App'>
+      <div className={style.contains}>
          <Nav logout={logout} />
          {/* <link rel="stylesheet" href="https://use.typekit.net/zoz7gnu.css"></link> */}
          <Routes>

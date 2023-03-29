@@ -2,6 +2,7 @@ import { connect, useDispatch } from 'react-redux';
 import { filterCards, orderCards } from '../redux/actions/actions';
 import Card from '../Cards/Card/Card';
 import { useState } from 'react';
+import style from './favorites.module.css'
 
 function Favorites({onClose, myFavorite}){
     const [aux, setAux] = useState(false);
@@ -14,24 +15,26 @@ function Favorites({onClose, myFavorite}){
     const handleFilter = (event) => {dispatch(filterCards(event.target.value))};
 
     return(
-        <div>
+        <div >
 
-            <select name="sortAOrD" onChange={handleOrder}>
-                <option value="order">Orden by:</option>
-                <option value="A">Ascendant</option>
-                <option value="D">Descendant</option>
-            </select>
+            <div className={style.options}>
+                <select name="sortAOrD" onChange={handleOrder}>
+                    <option value="order">Orden by:</option>
+                    <option value="A">Ascendant</option>
+                    <option value="D">Descendant</option>
+                </select>
 
-            <select name="sortGender" onChange={handleFilter}>
-                <option value="filter" disabled="disable">Filter by:</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Genderless">Genderless</option>
-                <option value="unknown">unknown</option>
-                <option value="All">All Characters</option>
-            </select>
+                <select name="sortGender" onChange={handleFilter}>
+                    <option value="filter" disabled="disable">Filter by:</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Genderless">Genderless</option>
+                    <option value="unknown">unknown</option>
+                    <option value="All">All Characters</option>
+                </select>
+            </div>
 
-            <ul>
+            <ul className={style.contains}>
                 {myFavorite && myFavorite.map((character) => <li><Card
                             id={character.id}
                             key={character.id}

@@ -1,0 +1,37 @@
+.contains{
+    width: 25vw;
+    height: 60vw;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(5, 53, 5);
+    border: 8px solid black;
+}
+
+.name{
+    font-size: large;
+    text-align: center;
+    color: rgb(10, 214, 54);
+}
+
+.text{
+    font-size: medium;
+    text-align: center;
+    color: rgb(71, 196, 71);
+}
+
+.image{
+    width: 70%;
+    height: 40%;
+}
+
+.link{
+    text-decoration: none;
+    color: rgb(71, 196, 71);
+}
+
+
+.button{
+    border-radius: 5px;
+    margin: 10px;
+    padding: 5px;
+}

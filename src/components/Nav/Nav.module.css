@@ -1,0 +1,7 @@
+.contains{
+    display: flex;
+    align-items: center;
+    align-content: space-evenly;
+    justify-content: space-evenly;
+    margin: 5%;
+}
