@@ -21,21 +21,37 @@
 
 .username{
     background: #fff;
-    color: #333;
+    color: green;
     padding: 14.5px 0px 15px 9px;
     border-radius: 5px 0px 0px 5px;
+}
+
+.usernameLabel{
+    color: green;
 }
 
 .password{
     background: #fff;
-    color: #333;
-    padding: 14.5px 0px 15px 9px;
+    color: green;
+    padding: 14.5px 5px 15px 9px;
     border-radius: 5px 0px 0px 5px;
 }
 
-.submit{
-    width: 48%;
-    display: inline-block;
+.passwordLabel{
 
+    color: green;
+}
+
+.error{
+    color: rgb(255, 16, 16);
+}
+
+.submit{
+    width: 25%;
+    display: inline-block;
     margin-left: 2%;
+    background-color: #074d47;
+    border-color: #074d47;
+    border: none;
+    color: green;
 }

@@ -34,13 +34,13 @@ export default function Form({login}){
 
                 <p>Login</p>
 
-                <label>Email: </label>
+                <label className={style.usernameLabel} >Email: </label>
                 <input className={style.username} name="email" type="text" value={userData.email} onChange={handleChange}/>
-                <p>{errors.email}</p>
+                <p className={style.error} >{errors.email}</p>
 
-                <label>Password: </label>
+                <label className={style.passwordLabel} >Password: </label>
                 <input className={style.password} name="password" type="text" value={userData.password} onChange={handleChange}/>
-                <p>{errors.password}</p>
+                <p className={style.error} >{errors.password}</p>
 
                 {userData.email !== "" && Object.keys(errors).length === 0 &&
                 <button className={style.submit} name="submit" type="submit">Submit</button>}
