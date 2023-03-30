@@ -1,15 +1,18 @@
 .contains{
-    width: 25vw;
+    display: flex;
+    flex-direction: column;
     height: 60vw;
     align-items: center;
-    justify-content: center;
-    background-color: rgb(5, 53, 5);
-    border: 6px solid black;
+    border-radius: 5px;
+    background-color: rgb(6, 102, 67);
+    border: 6px solid rgba(25, 82, 79, 0.623);
+    margin: 0 auto;
+    margin-top: 5vh;
 }
 
 .name{
-    font-size: large;
-    text-align: center;
+    font-size: 1.5em;
+    margin: 15px;
     color: rgb(10, 214, 54);
 }
 
@@ -21,18 +24,19 @@
 
 .image{
     object-fit: cover;
-    width: 70%;
-    height: 40%;
+    width: 160px;
+    height: 160px;
 }
 
 .link{
     text-decoration: none;
-    color: rgb(71, 196, 71);
+    color: rgb(32, 182, 112);
 }
 
 
 .button{
-    border-radius: 5px;
-    margin: 10px;
-    padding: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1.5;
 }

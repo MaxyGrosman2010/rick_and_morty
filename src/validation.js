@@ -5,20 +5,15 @@ export default function validation(inputs){
     let error = {};
     
     if(inputs.email) {
-
         if(inputs.email.length < 35){
-
             if(!regexEmail.test(inputs.email)) error.email = "No es un email";
 
         }else error.email = "Es muy largo para ser un email";
-        
-    }else error.email = "Debe ingresar un email";
+}
     
     if(inputs.password){
-
         if(!regexPassword.test(inputs.password)) error.password = "No cumple las condiciones para ser un password";
-
-    } else error.password = "Debe ingresar una password";
+}
 
     return error;
 }

@@ -13,6 +13,8 @@ export default function SearchBar() {
       <div>
          <input type="search" onChange={handleChange}/>
          <button onClick={() => dispatch(onSearch(id))}>Agregar</button>
+
+         <button onClick={() => dispatch(onSearch(Math.floor(Math.random() * 826)))} >Random</button>
       </div>
    );
 }

@@ -1,5 +1,6 @@
 import validation from "../../validation";
 import { useState } from "react";
+import style from './Form.module.css'
 
 export default function Form({login}){
 
@@ -19,8 +20,7 @@ export default function Form({login}){
         event.preventDefault();
         const error = Object.values(errors);
 
-        if(error.length === 0){
-            
+        if(error.length === 0){ 
             login(userData);
             setData({email: "", password: ""});
             setErrors({});
@@ -29,19 +29,21 @@ export default function Form({login}){
     };
 
     return(
-        <div>
-            <form onSubmit={handleSubmit}>
-                
+        <div className={style.contains} >
+            <form className={style.form} onSubmit={handleSubmit}>
+
+                <p>Login</p>
+
                 <label>Email: </label>
-                <input name="email" type="text" value={userData.email} onChange={handleChange}/>
+                <input className={style.username} name="email" type="text" value={userData.email} onChange={handleChange}/>
                 <p>{errors.email}</p>
 
                 <label>Password: </label>
-                <input name="password" type="text" value={userData.password} onChange={handleChange}/>
+                <input className={style.password} name="password" type="text" value={userData.password} onChange={handleChange}/>
                 <p>{errors.password}</p>
 
                 {userData.email !== "" && Object.keys(errors).length === 0 &&
-                <button name="submit" type="submit">Submit</button>}
+                <button className={style.submit} name="submit" type="submit">Submit</button>}
             </form>
         </div>
     );
