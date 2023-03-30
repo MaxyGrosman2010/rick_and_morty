@@ -1,6 +1,7 @@
 import React from "react";
 import {useDispatch} from 'react-redux';
 import { onSearch } from "../../redux/actions/actions";
+import style from './SearchBar.module.css';
 
 export default function SearchBar() {
 
@@ -11,10 +12,9 @@ export default function SearchBar() {
    
    return (   
       <div>
-         <input type="search" onChange={handleChange}/>
-         <button onClick={() => dispatch(onSearch(id))}>Agregar</button>
+         <input className={style.searchBar} type="search" onChange={handleChange}/>
+         <button className={style.searchBarButton} onClick={() => dispatch(onSearch(id))}>Agregar</button>
 
-         <button onClick={() => dispatch(onSearch(Math.floor(Math.random() * 826)))} >Random</button>
+         <button className={style.random} onClick={() => dispatch(onSearch(Math.floor(Math.random() * 826)))} >Random</button>
       </div>
-   );
-}
+)};

@@ -55,10 +55,11 @@ export const rootReducer = (state = initialState, {type, payload}) => {
             };
 
         case ON_SEARCH:
-            return{
-                ...state,
-                allCharacter: [...state.allCharacter, payload]
-            };
+            if(!state.allCharacter.some(character => character.id === payload.id)){
+                return{
+                    ...state,
+                    allCharacter: [...state.allCharacter, payload]
+            }}else return state;
 
         default:
             return state;
