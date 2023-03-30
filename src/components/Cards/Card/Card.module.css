@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     background-color: rgb(5, 53, 5);
-    border: 8px solid black;
+    border: 6px solid black;
 }
 
 .name{
@@ -20,6 +20,7 @@
 }
 
 .image{
+    object-fit: cover;
     width: 70%;
     height: 40%;
 }

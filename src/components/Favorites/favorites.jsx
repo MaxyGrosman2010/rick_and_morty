@@ -34,8 +34,8 @@ function Favorites({onClose, myFavorite}){
                 </select>
             </div>
 
-            <ul className={style.contains}>
-                {myFavorite && myFavorite.map((character) => <li><Card
+            <div className={style.contains} >
+                {myFavorite && myFavorite.map((character) => <Card
                             id={character.id}
                             key={character.id}
                             name={character.name}
@@ -44,8 +44,8 @@ function Favorites({onClose, myFavorite}){
                             gender={character.gender}
                             origin={character.origin}
                             image={character.image}
-                            onClose={onClose}/></li>)}
-            </ul>
+                            onClose={onClose}/>)}
+            </div>
         </div>
     );
 }

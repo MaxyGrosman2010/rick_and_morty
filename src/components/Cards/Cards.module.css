@@ -1,6 +1,7 @@
 .contains{
-    display: flex;
-    flex-flow: row wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,
+    minmax(230px, 1fr));
     align-items: center;
     justify-content: space-evenly;
     padding: 15px;
