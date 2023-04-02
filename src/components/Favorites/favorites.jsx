@@ -18,13 +18,13 @@ function Favorites({onClose, myFavorite}){
         <div >
 
             <div className={style.options}>
-                <select name="sortAOrD" onChange={handleOrder}>
+                <select className={style.selectors} name="sortAOrD" onChange={handleOrder}>
                     <option value="order">Orden by:</option>
                     <option value="A">Ascendant</option>
                     <option value="D">Descendant</option>
                 </select>
 
-                <select name="sortGender" onChange={handleFilter}>
+                <select className={style.selectors} name="sortGender" onChange={handleFilter}>
                     <option value="filter" disabled="disable">Filter by:</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>

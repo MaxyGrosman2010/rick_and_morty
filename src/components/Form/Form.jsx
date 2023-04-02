@@ -9,6 +9,7 @@ export default function Form({login}){
         password: ""
     });
     const [errors, setErrors] = useState({});
+    const [isShow, setShow] = useState(false);
 
     const handleChange = (event) => {
         setErrors(validation({...userData, [event.target.name]: event.target.value}));
@@ -16,16 +17,14 @@ export default function Form({login}){
     }
 
     const handleSubmit = (event) => {
-
         event.preventDefault();
-        const error = Object.values(errors);
 
-        if(error.length === 0){ 
+        if(Object.values(errors).length === 0){ 
             login(userData);
             setData({email: "", password: ""});
             setErrors({});
 
-        }else window.alert("El usuario/password no son validos")
+        }else window.alert("El usuario/password no son validos");
     };
 
     return(
@@ -39,11 +38,12 @@ export default function Form({login}){
                 <p className={style.error} >{errors.email}</p>
 
                 <label className={style.passwordLabel} >Password: </label>
-                <input className={style.password} name="password" type="text" value={userData.password} onChange={handleChange}/>
+                <input className={style.password} name="password" type={isShow ? "text" : "password"} value={userData.password} onChange={handleChange}/>
+                <input className={style.checkbox} type="checkbox" checked={isShow} onChange={() => setShow(!isShow)}/>
                 <p className={style.error} >{errors.password}</p>
 
                 {userData.email !== "" && Object.keys(errors).length === 0 &&
-                <button className={style.submit} name="submit" type="submit">Submit</button>}
+                <button /* className={style.submit} */ name="submit" type="submit">Submit</button>}
             </form>
         </div>
     );

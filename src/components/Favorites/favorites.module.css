@@ -14,4 +14,10 @@
     align-content: space-evenly;
     justify-content: space-evenly;
     margin: 5%;
+    border: none;
+}
+
+.selectors{
+    background-color: #17c28e;
+    border: none;
 }

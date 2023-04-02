@@ -40,6 +40,6 @@ export const onSearch = (id) => {
             return dispatch({
                 type: ON_SEARCH,
                 payload: data
-            })
+            });
     });
 }};
