@@ -1,4 +1,4 @@
-import { ADD_FAV, REMOVE_FAV, FILTER_CARDS, ORDER_CARDS, ON_SEARCH, ON_CLOSE} from "./types";
+import { ADD_FAV, REMOVE_FAV, FILTER_CARDS, ORDER_CARDS, ON_SEARCH, ON_CLOSE, GET_DETAIL_CHARACTER} from "./types";
 import axios from "axios";
 
 export const addFav = (character) => {
@@ -33,12 +33,24 @@ export const onClose = (id) => {
 }};
 
 export const onSearch = (id) => {
-    return async function (dispatch){
+    return async function(dispatch){
         
         axios.get(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
 
             return dispatch({
                 type: ON_SEARCH,
+                payload: data
+            });
+    });
+}};
+
+export const getDetailCharacter = (id) => {
+    return async function(dispatch) {
+
+        axios.get(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
+
+            return dispatch({
+                type: GET_DETAIL_CHARACTER,
                 payload: data
             });
     });

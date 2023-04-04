@@ -1,9 +1,10 @@
-import { ADD_FAV, REMOVE_FAV, FILTER_CARDS, ORDER_CARDS, ON_CLOSE, ON_SEARCH} from "../actions/types";
+import { ADD_FAV, REMOVE_FAV, FILTER_CARDS, ORDER_CARDS, ON_CLOSE, ON_SEARCH, GET_DETAIL_CHARACTER} from "../actions/types";
 
 const initialState ={
     allFavorite: [],
     myFavorite: [],
-    allCharacter: []
+    allCharacter: [],
+    detailCharacter: {}
 };
 
 export const rootReducer = (state = initialState, {type, payload}) => {
@@ -60,6 +61,12 @@ export const rootReducer = (state = initialState, {type, payload}) => {
                     ...state,
                     allCharacter: [...state.allCharacter, payload]
             }}else return state;
+
+        case GET_DETAIL_CHARACTER:
+            return{
+                ...state,
+                detailCharacter: payload
+            }
 
         default:
             return state;

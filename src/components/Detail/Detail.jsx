@@ -1,37 +1,28 @@
-import {useState, useEffect} from 'react';
+import {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { getDetailCharacter } from '../redux/actions/actions';
 
 export default function Detail(){
     const {id} = useParams();
-    const [character, setCharacter] = useState({});
-    const [isLoading, setLoading] = useState(true);
-    const {name, status, species, gender, image, origin} = character;
+    const dispatch = useDispatch();
 
     useEffect(() => {
         
-        axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
+        dispatch(getDetailCharacter(id));
 
-           if (data.name) {
-              setCharacter(data);
-              setLoading(false);
-           } else window.alert('No hay personajes con ese ID');
-
-        });
-
-        return setCharacter({});
      }, [id]);
 
-     if(isLoading) return <div>Loading...</div>;
+    const character = useSelector((state) => state.detailCharacter);
 
     return(
         <div>
-            <h3>Name: {name}</h3>
-            <h3>Status: {status}</h3>
-            <h3>Species: {species}</h3>
-            <h3>Gender: {gender}</h3>
-            <h3>Origin: {origin.name}</h3>
-            <img src={image} alt="" />
+            <h3>Name: {character.name}</h3>
+            <h3>Status: {character.status}</h3>
+            <h3>Species: {character.species}</h3>
+            <h3>Gender: {character.gender}</h3>
+            <h3>Origin: {character.origin.name}</h3>
+            <img src={character.image} alt="characterImage" />
         </div>
     );
 }
