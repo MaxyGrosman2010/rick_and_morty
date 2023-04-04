@@ -14,7 +14,7 @@ export default function Form({login}){
     const handleChange = (event) => {
         setErrors(validation({...userData, [event.target.name]: event.target.value}));
         setData({...userData, [event.target.name]: event.target.value});
-    }
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();

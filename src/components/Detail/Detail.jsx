@@ -26,7 +26,6 @@ export default function Detail(){
 
     return(
         <div>
-            {console.log(character)}
             <h3>Name: {name}</h3>
             <h3>Status: {status}</h3>
             <h3>Species: {species}</h3>

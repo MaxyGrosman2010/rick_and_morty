@@ -36,7 +36,7 @@ export default function App() {
    return (
       <div className={style.contains}>
 
-         <h1>Rick and Morty</h1>
+         {<img src='rickAndMorty.png' alt='logo'></img>}
 
          <Nav logout={logout} />
          {/* <link rel="stylesheet" href="https://use.typekit.net/zoz7gnu.css"></link> */}
@@ -50,4 +50,4 @@ export default function App() {
          </Routes>
       </div>
    );
-}
+};
