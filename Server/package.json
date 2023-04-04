@@ -1,0 +1,29 @@
+{
+  "name": "rick_and_morty_server",
+  "version": "1.0.0",
+  "description": "rick_and_morty_proyect",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "npm test",
+    "start": "nodemon ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaxyGrosman2010/rick_and_morty.git"
+  },
+  "keywords": [
+    "Henry_Proyect"
+  ],
+  "author": "Maximiliano Grosman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaxyGrosman2010/rick_and_morty/issues"
+  },
+  "homepage": "https://github.com/MaxyGrosman2010/rick_and_morty#readme",
+  "dependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
