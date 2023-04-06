@@ -1,29 +1,22 @@
 var http = require("http");
-var characters = require("./utils/data.js");
+var getCharacter = require('./controllers/getCharById');
 
 const PORT = 3001;
 const server = http.createServer((req, res) => {
 
     let id = parseInt(req.url.split('/').pop());
-
     res.setHeader('Access-Control-Allow-Origin', '*');
-
     switch(req.url){
 
-        case "/rickandmorty/character":
-            res.writeHead(200, {'Content-Type': 'application/json'});
-            res.end(JSON.stringify(characters));
-            break;
-
         case `/rickandmorty/character/${id}`:
-            res.writeHead(200, {'Content-Type': 'application/json'});
-            let character = characters.find( (element) => element.id === id);
-            res.end(JSON.stringify(character));
+            getCharacter(res, id);
             break;
 
         default:
+            res.writeHead(404, {'Content-Type': 'text/plain'}).end('Route not found');
             break;
     };
-}).listen(PORT, 'localhost');
+    return;
+}).listen(PORT, console.log("in port http://localhost:3001"));
 
 module.exports = server;

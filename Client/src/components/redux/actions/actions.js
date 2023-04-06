@@ -1,4 +1,5 @@
-import { ADD_FAV, REMOVE_FAV, FILTER_CARDS, ORDER_CARDS, ON_SEARCH, ON_CLOSE, GET_DETAIL_CHARACTER} from "./types";
+import { ADD_FAV, REMOVE_FAV, FILTER_CARDS, ORDER_CARDS, ON_SEARCH, ON_CLOSE, GET_DETAIL_CHARACTER,
+    ALL_CHARACTERS} from "./types";
 import axios from "axios";
 
 export const addFav = (character) => {
@@ -35,8 +36,7 @@ export const onClose = (id) => {
 export const onSearch = (id) => {
     return async function(dispatch){
         
-        axios.get(`http://localhost:3001/rickandmorty/character/${id}`).then(({ data }) => {
-
+        axios(`http://localhost:3001/rickandmorty/character/${id}`).then(({ data }) => {
             return dispatch({
                 type: ON_SEARCH,
                 payload: data
@@ -47,11 +47,27 @@ export const onSearch = (id) => {
 export const getDetailCharacter = (id) => {
     return async function(dispatch) {
 
-        axios.get(`http://localhost:3001/rickandmorty/character/${id}`).then(({ data }) => {
+        axios(`http://localhost:3001/rickandmorty/character/${id}`).then(({ data }) => {
 
-            return dispatch({
-                type: GET_DETAIL_CHARACTER,
-                payload: data
-            });
+            if(data){
+                return dispatch({
+                    type: GET_DETAIL_CHARACTER,
+                    payload: data
+                });
+            } else{
+                alert('No existe el id que pediste');
+            };
     });
 }};
+
+export const getAllCharacters = () => {
+    axios().then((data) => {
+        if(data) return dispatch({
+            type: ALL_CHARACTERS,
+            payload: data
+        });
+        else{
+            alert('No puede regresar todos los personajes');
+        }
+    })
+};

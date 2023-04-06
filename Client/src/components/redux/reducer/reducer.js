@@ -1,8 +1,10 @@
-import { ADD_FAV, REMOVE_FAV, FILTER_CARDS, ORDER_CARDS, ON_CLOSE, ON_SEARCH, GET_DETAIL_CHARACTER} from "../actions/types";
+import { ADD_FAV, REMOVE_FAV, FILTER_CARDS, ORDER_CARDS, ON_CLOSE, ON_SEARCH, GET_DETAIL_CHARACTER,
+    ALL_CHARACTERS} from "../actions/types";
 
 const initialState ={
     allFavorite: [],
     myFavorite: [],
+    searchedCharacter: [],
     allCharacter: [],
     detailCharacter: {}
 };
