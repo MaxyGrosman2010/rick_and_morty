@@ -6,7 +6,7 @@ const login = require('./users');
 const router = express.Router();
 
 router.use("/character", character);
-router.use("/favorites", favorites);
+router.use("/favorite", favorites);
 router.use("/", login);
 
 module.exports = router;
