@@ -2,16 +2,27 @@ import { ADD_FAV, REMOVE_FAV, FILTER_CARDS, ORDER_CARDS, ON_SEARCH, ON_CLOSE, GE
     ALL_CHARACTERS} from "./types";
 import axios from "axios";
 
+const endPointFav = 'http://localhost:3001/rickandmorty/favorite/';
+const endPointChar = 'http://localhost:3001/rickandmorty/character/';
+
 export const addFav = (character) => {
-    return{
-        type: ADD_FAV,
-        payload: character
+    return (dispatch) => {
+        axios.post(endPointFav, character).then(({data}) => {
+            return dispatch({
+                type: ADD_FAV,
+                payload: character
+            }).catch(err => err.message);
+        });
 }};
 
 export const removeFav = (id) => {
-    return{
-        type: REMOVE_FAV,
-        payload: id
+    return (dispatch) => {
+        axios.delete(`${endPointFav}${id}`).then(({data}) => {
+            return dispatch({
+                type: REMOVE_FAV,
+                payload: data
+            }).catch(err => err.message);
+        });
 }};
 
 export const filterCards = (gender) => {
@@ -36,7 +47,7 @@ export const onClose = (id) => {
 export const onSearch = (id) => {
     return function(dispatch){
         
-        axios(`http://localhost:3001/rickandmorty/character/${id}`).then(({ data }) => {
+        axios(`${endPointChar}${id}`).then(({ data }) => {
             return dispatch({
                 type: ON_SEARCH,
                 payload: data
@@ -47,7 +58,7 @@ export const onSearch = (id) => {
 export const getDetailCharacter = (id) => {
     return function(dispatch) {
 
-        axios(`http://localhost:3001/rickandmorty/character/${id}`).then(({ data }) => {
+        axios(`${endPointChar}${id}`).then(({ data }) => {
 
             if(data){
                 return dispatch({
@@ -57,17 +68,17 @@ export const getDetailCharacter = (id) => {
             } else{
                 alert('No existe el id que pediste');
             };
-    });
+    }).catch(err => err.message);
 }};
 
-export const getAllCharacters = () => {
-    return (dispatch) => {
-        axios('http://localhost:3001/rickandmorty/characters').then( ({data}) =>{
-            if(data) return dispatch({
-                type: ALL_CHARACTERS,
-                payload: data
-            })
-            else alert('Hubo un error al traer todos los personajes');
-        })
-    };
-};
+// export const getAllCharacters = () => {
+//     return (dispatch) => {
+//         axios(`${endPointChar}`).then( ({data}) =>{
+//             if(data) return dispatch({
+//                 type: ALL_CHARACTERS,
+//                 payload: data
+//             })
+//             else alert('Hubo un error al traer todos los personajes');
+//         })
+//     };
+// };

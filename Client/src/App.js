@@ -8,25 +8,38 @@ import Cards from './components/Cards/Cards';
 import Error from './components/Error/Error';
 import Form from './components/Form/Form';
 import Favorites from './components/Favorites/favorites';
+import axios from 'axios';
 
 export default function App() {
 
    const [access, setAccess] = React.useState(false);
    const navigate = useNavigate();
-   const EMAIL = "max@gmail.com";
-   const PASSWORD = "marcos1";
-
+   const URL = 'http://localhost:3001/rickandmorty/login/';
+   
    const login = ( userData ) => {
+      const { email, password } = userData;
+      
+      axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+         const { access } = data;
 
-      if (userData.password === PASSWORD && userData.email === EMAIL) {
-         setAccess(true);
-         navigate('/home');
-      } else window.alert("El usuario/contraseña es incorrecto");
+         if(access){
+            setAccess(access);
+            access && navigate('/home');
+      }}).catch(err => err.message);
    };
-
+   
    const logout = () => {
-      setAccess(false);
-      navigate(`/`);
+      let email = "logout@gmail.com";
+      let password = 1234;
+      
+      axios(URL + `?email=${email}&password=${password}`).then(({data}) => {
+         const {access} = data;
+         if(!access){
+            setAccess(access);
+            !access && navigate('/');
+      }}).catch(err => err.message);
+      // setAccess(false);
+      // navigate(`/`);
    };
 
    React.useEffect(() => {
