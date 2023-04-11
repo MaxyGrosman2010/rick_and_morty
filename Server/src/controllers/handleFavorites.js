@@ -22,7 +22,7 @@ function deleteFav(req, res){
         myFavorites = myFavorites.filter(element => element.id !== id);
         res.status(200).json(myFavorites);
 
-    }catch{res.status(404).json({message: error.message});};
+    }catch(error) {res.status(404).json({message: error.message});};
 };
 
 module.exports = {

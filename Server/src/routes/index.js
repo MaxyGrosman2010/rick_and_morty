@@ -7,6 +7,6 @@ const router = express.Router();
 
 router.use("/character", character);
 router.use("/favorite", favorites);
-router.use("/", login);
+router.use("/login", login);
 
 module.exports = router;
