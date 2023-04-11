@@ -1,11 +1,35 @@
-var http = require("http");
+const express = require('express');
+const server = express();
 var getCharById = require('./controllers/getCharById');
 var getAllCharacters = require('./controllers/getAllChar');
 
 const PORT = 3001;
-const URL = 'http://localhost:3001';
+const URL = `http://localhost:${PORT}`;
 
-const server = http.createServer((req, res) => {
+server.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header(
+       'Access-Control-Allow-Headers',
+       'Origin, X-Requested-With, Content-Type, Accept'
+    );
+    res.header(
+       'Access-Control-Allow-Methods',
+       'GET, POST, OPTIONS, PUT, DELETE'
+    );
+    next();
+});
+
+server.use(express.json());
+
+server.all("/*",(req, res, next) => {
+    req.url = "/rickandmorty" + req.url;
+    next();
+})
+
+server.listen(PORT, () => {console.log(`in port ${URL}`)});
+
+/* const server = http.createServer((req, res) => {
 
     let id = parseInt(req.url.split('/').pop());
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -24,6 +48,6 @@ const server = http.createServer((req, res) => {
             break;
     };
     return;
-}).listen(PORT, console.log(`in port ${URL}`));
+}).listen(PORT, console.log(`in port ${URL}`)); */
 
 module.exports = server;
