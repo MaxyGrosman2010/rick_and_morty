@@ -16,16 +16,17 @@ export default function App() {
    const navigate = useNavigate();
    const URL = 'http://localhost:3001/rickandmorty/login/';
    
-   const login = ( userData ) => {
-      const { email, password } = userData;
-      
-      axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
-         const { access } = data;
+   const login = async( userData ) => {
+      try{
+         const { email, password } = userData;
+         let connect = await axios(URL + `?email=${email}&password=${password}`)
+         const {access} = connect.data;
 
          if(access){
             setAccess(access);
-            access && navigate('/home');
-      }}).catch(err => err.message);
+            navigate('/home');
+         };
+      }catch(error){return error.message};
    };
    
    const logout = () => {

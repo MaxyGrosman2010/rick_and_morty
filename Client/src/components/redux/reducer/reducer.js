@@ -1,5 +1,4 @@
-import { ADD_FAV, REMOVE_FAV, FILTER_CARDS, ORDER_CARDS, ON_CLOSE, ON_SEARCH, GET_DETAIL_CHARACTER,
-    ALL_CHARACTERS} from "../actions/types";
+import { ADD_FAV, REMOVE_FAV, FILTER_CARDS, ORDER_CARDS, ON_CLOSE, ON_SEARCH, GET_DETAIL_CHARACTER} from "../actions/types";
 
 const initialState ={
     allFavorite: [],
@@ -21,12 +20,10 @@ export const rootReducer = (state = initialState, {type, payload}) => {
             };
 
         case REMOVE_FAV:
-            let filter =state.allFavorite.filter(character =>
-                parseInt(character.id) !== parseInt(payload));
             return {
                 ...state,
-                myFavorite: filter,
-                allFavorite: filter
+                myFavorite: payload,
+                allFavorite: payload
             };
 
         case FILTER_CARDS:
@@ -68,7 +65,7 @@ export const rootReducer = (state = initialState, {type, payload}) => {
             return{
                 ...state,
                 detailCharacter: payload
-            }
+            };
 
         default:
             return state;
