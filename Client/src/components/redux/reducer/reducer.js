@@ -15,8 +15,8 @@ export const rootReducer = (state = initialState, {type, payload}) => {
         case ADD_FAV:
             return {
                 ...state,
-                myFavorite: [...state.myFavorite, payload],
-                allFavorite: [...state.allFavorite, payload]
+                myFavorite: payload,
+                allFavorite: payload,
             };
 
         case REMOVE_FAV:

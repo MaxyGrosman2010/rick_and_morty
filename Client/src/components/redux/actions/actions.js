@@ -5,27 +5,29 @@ const endPointFav = 'http://localhost:3001/rickandmorty/favorite/';
 const endPointChar = 'http://localhost:3001/rickandmorty/character/';
 
 export const addFav = (character) => {
-    try{
-        return function (dispatch){
-        axios.post(endPointFav, character).then(({data}) => {
-        return dispatch({
-            type: ADD_FAV,
-            payload: character
-        }).catch(err => err.message);
-        });
-    };
-    }catch(error){console.error(error.message)};
+        return async function (dispatch){
+            try{
+                let {data} = await axios.post(endPointFav, character);
+
+                if(data) return dispatch({
+                    type: ADD_FAV,
+                    payload: data
+                });
+            }catch(error){console.error(error.message)};
+        };
 };
 
 export const removeFav = (id) => {
-    return (dispatch) => {
-        axios.delete(`${endPointFav}${id}`).then(({data}) => {
-            return dispatch({
-                type: REMOVE_FAV,
-                payload: data
-            }).catch(err => err.message);
-        })
-    };
+        return async(dispatch) => {
+            try{
+                let{data} = await axios.delete(`${endPointFav}${id}`);
+
+                if(data) return dispatch({
+                    type: REMOVE_FAV,
+                    payload: data
+                });
+            }catch(error){console.error(error.message)};
+        };
 };
 
 export const filterCards = (gender) => {
@@ -48,36 +50,26 @@ export const onClose = (id) => {
 }};
 
 export const onSearch = (id) => {
-    try{
-        return async function(dispatch){
+    return async function(dispatch){
+        try{
             let {data} = await axios.get(`${endPointChar}${id}`)
             if(data) return dispatch({
                 type: ON_SEARCH,
                 payload: data
             });
-    }}catch(error){console.error(error.message)};
+        }catch(error){console.error(error.message)};
+    };
 };
 
 export const getDetailCharacter = (id) => {
-    try{
-        return function(dispatch){
+    return function(dispatch){
+        try{
             axios.get(`${endPointChar}${id}`).then(({data}) =>{
                 if(data) return dispatch({
                     type: GET_DETAIL_CHARACTER,
                     payload: data
                 });
             });
-    }}catch(error){console.error(error.message)};
+        }catch(error){console.error(error.message)};
+    };
 };
-
-// export const getAllCharacters = () => {
-//     return (dispatch) => {
-//         axios(`${endPointChar}`).then( ({data}) =>{
-//             if(data) return dispatch({
-//                 type: ALL_CHARACTERS,
-//                 payload: data
-//             })
-//             else alert('Hubo un error al traer todos los personajes');
-//         })
-//     };
-// };
