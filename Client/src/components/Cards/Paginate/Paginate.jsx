@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {nextPage, prevPage, handleNumber} from "../../redux/actions/actions";
+import {nextPage, prevPage} from "../../redux/actions/actions";
+import style from './Paginate.module.css';
 
 export default function Paginate({cantPages}){
 
@@ -13,22 +14,19 @@ export default function Paginate({cantPages}){
     function prev(){
         dispatch(prevPage());
     };
-    function number(number){
-        dispatch(handleNumber(number));
-    };
 
     return(
-        <div>
+        <div className={style.contains}>
 
-            { numPage > 1 ? (<div>
-                <button onClick={prev}>{numPage - 1}</button>
-            </div>) : null  }
+            { numPage > 1 ? (
+                <button className={style.button}  onClick={prev}>{numPage - 1}</button>
+            ) : null  }
             
-            <h3>{numPage}</h3>
+            <h3 className={style.button}>{numPage}</h3>
             
-            { numPage < cantPages ? ( <div>
-                <button onClick={next}>{numPage + 1}</button>
-            </div> ) : null }
+            { numPage < cantPages ? ( 
+                <button className={style.button}  onClick={next}>{numPage + 1}</button>
+            ) : null }
         </div>
     );
 };

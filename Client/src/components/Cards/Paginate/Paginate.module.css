@@ -1,0 +1,40 @@
+.contains{
+	margin: 27px auto 0;
+	position: relative;
+	width: 590px;
+	height: 100px;
+	background-color: #17c28e;
+	border-radius: 8px;
+	font-size: 0;
+}
+
+.button{
+    line-height: 50px;
+	height: 60%;
+	font-size: 15px;
+	display: inline-block;
+	position: relative;
+	text-decoration: none;
+	text-transform: uppercase;
+	text-align: center;
+	color: rgb(0, 92, 0);
+	cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 0 0 1px inset #17c28e;
+    margin: 0 16px;
+    margin-bottom: 4px;
+	background-color: #17c28e;
+    border: none;
+    border-radius: 8px;
+}
+
+.button:nth-child(1) {
+	width: 100px;
+}
+.button:nth-child(2) {
+	width: 100px;
+}
+.button:nth-child(3) {
+	width: 100px;
+}
