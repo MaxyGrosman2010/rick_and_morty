@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const character = require('../controllers/handleCharacters');
+const {getCharById, getAllCharacters} = require('../controllers/handleCharacters');
 
-router.get("/:id", character);
+router.get("/:id", getCharById);
+router.get("/", getAllCharacters);
 
 module.exports = router;

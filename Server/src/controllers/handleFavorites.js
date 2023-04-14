@@ -28,4 +28,4 @@ function deleteFav(req, res){
 module.exports = {
     postFav,
     deleteFav
-}
+};
