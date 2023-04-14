@@ -14,7 +14,7 @@ export default function App() {
 
    const [access, setAccess] = React.useState(false);
    const navigate = useNavigate();
-   const URL = 'http://localhost:3001/rickandmorty/login/';
+   const URL = 'http://localhost:3001/rickandmorty/users/login';
    
    const login = async( userData ) => {
       try{

@@ -29,4 +29,4 @@ export default function Nav({ logout }){
             
         </div>
     );
-}
+};

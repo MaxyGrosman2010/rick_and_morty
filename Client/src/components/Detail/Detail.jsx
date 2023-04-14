@@ -7,15 +7,17 @@ export default function Detail(){
 
     const {id} = useParams();
     const dispatch = useDispatch();
-    const [isLoading, setLoading] = useState(false);
+    const [isLoading, setLoading] = useState(true);
 
+    if(isLoading) <div>Loading...</div>;
+    
     useEffect(() => {
         dispatch(getDetailCharacter(id));
         setLoading(!isLoading);
 
     }, [id]);
 
-    if(isLoading) <div>Loading...</div>;
+    
 
     const character = useSelector((state) => state.detailCharacter);
 

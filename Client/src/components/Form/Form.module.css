@@ -33,12 +33,15 @@
 .password{
     background: #fff;
     color: green;
-    padding: 14.5px 5px 15px 9px;
+    padding: 14.5px 0px 15px 9px;
+    margin: 0px;
     border-radius: 5px 0px 0px 5px;
 }
 
 .passwordLabel{
     color: green;
+    margin: -14px;
+    padding-right: 10px;
 }
 
 .error{

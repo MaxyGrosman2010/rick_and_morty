@@ -1,11 +1,13 @@
-import { ADD_FAV, REMOVE_FAV, FILTER_CARDS, ORDER_CARDS, ON_CLOSE, ON_SEARCH, GET_DETAIL_CHARACTER} from "../actions/types";
+import { ADD_FAV, REMOVE_FAV, FILTER_CARDS, ORDER_CARDS, ON_CLOSE, ON_SEARCH, GET_DETAIL_CHARACTER,
+        ALL_CHARACTERS, HANDLE_NUMBER, NEXT_PAGE, PREV_PAGE} from "../actions/types";
 
 const initialState ={
     allFavorite: [],
     myFavorite: [],
     searchedCharacter: [],
     allCharacter: [],
-    detailCharacter: {}
+    detailCharacter: {},
+    numPage: 1
 };
 
 export const rootReducer = (state = initialState, {type, payload}) => {
@@ -65,6 +67,30 @@ export const rootReducer = (state = initialState, {type, payload}) => {
             return{
                 ...state,
                 detailCharacter: payload
+            };
+
+        case ALL_CHARACTERS:
+            return{
+                ...state,
+                allCharacter: payload
+            };
+        
+        case HANDLE_NUMBER:
+            return{
+                ...state,
+                numPage: payload
+            };
+
+        case NEXT_PAGE:
+            return{
+                ...state,
+                numPage: state.numPage + 1
+            };
+
+        case PREV_PAGE:
+            return{
+                ...state,
+                numPage: state.numPage - 1
             };
 
         default:
