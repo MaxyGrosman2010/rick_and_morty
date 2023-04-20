@@ -2,7 +2,6 @@ const axios = require('axios');
 require('dotenv').config();
 
 const URL = "https://rickandmortyapi.com/api/character/";
-const listChar = [];
 
 function getCharById(req, res){
     try{
@@ -22,18 +21,26 @@ function getCharById(req, res){
 
 function getAllCharacters(req, res){
     try{
-        axios(`${URL}`).then(({data}) => {            if(data.results) return res.status(200).json(data.results.map(character => {
-                
-                let {origin} = character;
+        axios(`${URL}`).then(({data}) => {
+            if(data){
+                const characters = data.results.map((character) => {
 
-                return {
-                    id: character.id, status: character.status, name: character.name,
-                    species: character.species, origin: origin.name, image: character.image,
-                    gender: character.gender
-                };
-            }));
-            else return res.status(500).json({message: "All the characters weren't send successfully"});
-        });
+                    let {origin} = character;
+
+                    return {
+                        id: character.id,
+                        status: character.status,
+                        name: character.name,
+                        species: character.species,
+                        origin: origin.name,
+                        image: character.image,
+                        gender: character.gender
+                    };
+                });
+
+                res.status(200).json(characters);
+            }else res.status(500).json({message: "Characters not found"});
+        })
     }catch(error){res.status(404).json({message: error.message})};
 };
 
