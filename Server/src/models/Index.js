@@ -1,5 +1,5 @@
-const {UserModel} = require("./User");
-const {FavoriteModel} = require("./Favorite");
+const UserModel = require("./User");
+const FavoriteModel = require("./Favorite");
 
 module.exports = {
     UserModel,

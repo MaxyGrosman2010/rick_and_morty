@@ -3,11 +3,6 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
    sequelize.define('Favorite', {
       id : {
-         //Para ID's unicos UUID:
-         //type: DataTypes.UUID,
-         // defaultValue: DataTypes.UUIDV4,
-         // primaryKey: true,
-         // allowNull: false
          type: DataTypes.INTEGER,
          allowNull: false,
          primaryKey: true

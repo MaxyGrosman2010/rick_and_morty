@@ -1,14 +1,13 @@
 const axios = require('axios');
 require('dotenv').config();
-
-const URL = "https://rickandmortyapi.com/api/character/";
+const {URL_API} = process.env;
 
 function getCharById(req, res){
     try{
         const {id} = req.params;
 
         if(!id) return res.status(404).json({message: "Please send a valid ID"});
-        axios(`${URL}${id}`).then(({data}) => {
+        axios(`${URL_API}${id}`).then(({data}) => {
             let {origin} = data;
             if(data) return res.status(200).json({id: data.id, status: data.status, name: data.name, 
                 species: data.species, origin: origin.name, image: data.image, gender: data.gender});
@@ -21,7 +20,7 @@ function getCharById(req, res){
 
 function getAllCharacters(req, res){
     try{
-        axios(`${URL}`).then(({data}) => {
+        axios(`${URL_API}`).then(({data}) => {
             if(data){
                 const characters = data.results.map((character) => {
 

@@ -1,6 +1,6 @@
 require('dotenv').config();
 const { Sequelize } = require('sequelize');
-const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_TABLE } = process.env;
 const {UserModel, FavoriteModel} = require("./models/Index");
 
 // EJERCICIO 03
@@ -9,7 +9,7 @@ const {UserModel, FavoriteModel} = require("./models/Index");
 
 // URL ----> `postgres://DB_USER:DB_PASSWORD@DB_HOST/rickandmorty`
 const sequelize = new Sequelize(
-   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/rickandmorty`,
+   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_TABLE}`,
    { logging: false, native: false }
 );
 
@@ -26,7 +26,6 @@ Favorite.belongsToMany(User, {through: 'UserFavorite'});
 
 module.exports = {
    //O ...sequelize.models para muchos
-   User,
-   Favorite,
+   ...sequelize.models,
    conn: sequelize,
 };
