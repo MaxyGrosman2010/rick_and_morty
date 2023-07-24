@@ -22,7 +22,7 @@ const verifyToken = (req, res, next) => {
         req.id = confirmToken.id;
         req.email = confirmToken.email;
         req.name = confirmToken.name;
-        
+
         next();
     }catch(error){
         console.log(error);

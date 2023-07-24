@@ -19,10 +19,19 @@ module.exports = (sequelize) => {
             isEmail: true
          }
       },
+      name: {
+         type: DataTypes.STRING,
+         allowNull: false
+      },
       password: {
          //Para password correctamente: Buscar hashPassword en doc de Sequelize
          type: DataTypes.STRING,
          allowNull: false
+      },
+      role: {
+         type: DataTypes.ENUM('user', 'admin', 'super'),
+         allowNull: false,
+         defaultValue: 'user'
       }
    }, { timestamps: false });
 };
