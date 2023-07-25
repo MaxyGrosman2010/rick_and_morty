@@ -41,7 +41,7 @@ const allCharacters = async() => {
         };
 
         cantPage = Math.ceil(charactersCache.length / 6);
-        console.log("Cache loaded", cantPage);
+        console.log("Cache loaded");
         return charactersCache;
     }catch(error){console.log(error)};
 };
