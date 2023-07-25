@@ -12,9 +12,9 @@ const signUp = async(req, res) => {
 
         const hashed = await hashPassword(password);
 
-        const newUser = await createUser(email, name, hashed);
+        await createUser(email, name, hashed);
 
-        return res.status(200).json(newUser);
+        return res.status(200).json({message: "User created with success"});
     }catch(error){
 
         console.log(error);
@@ -34,12 +34,9 @@ const logIn = async(req, res) => {
         if(!valid) return res.status(422).json({error: "This credential isn't valid"});
 
         const token = await createToken(exist);
-        let response = {
-            name: exist.name,
-            token: token
-        };
 
-        return res.status(202).json(response);
+        res.cookie('token', token);
+        return res.status(202).json({name: exist.name});
     }catch(error){
 
         console.log(error);

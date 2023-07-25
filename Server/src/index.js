@@ -1,6 +1,6 @@
 require('dotenv').config(); //Trae process --> .env --> variable que deseamos usar.
 const server = require('./server');
-const conn = require('./DB_connection');
+const { conn } = require('./DB_connection');
 const { PORT } = process.env;
 
 

@@ -4,13 +4,13 @@ module.exports = (sequelize) => {
    sequelize.define('User', {
       id: {
          //Para ID's unicos UUID:
-         //type: DataTypes.UUID,
-         // defaultValue: DataTypes.UUIDV4,
-         // primaryKey: true,
-         // allowNull: false
-         type: DataTypes.INTEGER,
+         type: DataTypes.UUID,
+         defaultValue: DataTypes.UUIDV4,
          primaryKey: true,
          allowNull: false
+         // type: DataTypes.INTEGER,
+         // primaryKey: true,
+         // allowNull: false
       },
       email: {
          type: DataTypes.STRING,
@@ -25,8 +25,7 @@ module.exports = (sequelize) => {
       },
       password: {
          //Para password correctamente: Buscar hashPassword en doc de Sequelize
-         type: DataTypes.STRING,
-         allowNull: false
+         type: DataTypes.STRING
       },
       role: {
          type: DataTypes.ENUM('user', 'admin', 'super'),

@@ -6,7 +6,7 @@ const createToken = (user) => {
     try{
         return jwt.sign({id: user.id, email: user.email, name: user.name}, 
             SECRET,
-            {EXPIRES_IN});
+            {expiresIn: EXPIRES_IN});
     }catch(error){
         console.log(error);
         return res.status(500).json(error);
