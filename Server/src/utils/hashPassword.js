@@ -9,7 +9,5 @@ module.exports = async(password) => {
         
         return hash;
 
-    }catch(error){
-        console.log(error);
-    };
+    }catch(error){ return error };
 };
