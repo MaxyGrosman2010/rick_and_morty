@@ -4,6 +4,7 @@ const findCharacterById = require('../controllers/findCharacterId');
 const {URL_API} = process.env;
 
 const charactersCache = [];
+var cantPage = 0;
 
 const getCharById = async(req, res) => {
     try{
@@ -38,10 +39,26 @@ const allCharacters = async() => {
                     charactersCache.push(character);
             };
         };
+
+        cantPage = Math.ceil(charactersCache.length / 6);
+        console.log("Cache loaded", cantPage);
+        return charactersCache;
     }catch(error){console.log(error)};
 };
 
+const getCharactersPage = (req, res) => {
+    const {page} = req.query;
+
+    if(!page) return res.status(404).json({message: "Please send a correct page"});
+    if(page > cantPage) return res.status(404).json({message: "Please send a correct page"});
+    let from = page - 1;
+    let response = charactersCache.slice(from * 6, page * 6);
+
+    res.status(200).json(response);
+};
+
 module.exports = {
+    allCharacters,
     getCharById,
-    allCharacters
+    getCharactersPage
 };

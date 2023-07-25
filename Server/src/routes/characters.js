@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const {getCharById, getAllCharacters} = require('../handlers/handlerCharacter');
+const {getCharById, getCharactersPage} = require('../handlers/handlerCharacter');
 
 router.get("/:id", getCharById);
-// router.get("/", getAllCharacters);
+router.get("/", getCharactersPage);
 
 module.exports = router;
