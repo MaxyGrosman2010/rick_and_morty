@@ -1,9 +1,9 @@
 import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import {addFav, removeFav} from '../../redux/actions/actions';
+import {addFav, removeFav} from '../../../redux/actions/actions';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { onClose } from '../../redux/actions/actions';
+import { onClose } from '../../../redux/actions/actions';
 import style from './Card.module.css';
 
 export default function Card({id, name, status, species, gender, origin, image}){

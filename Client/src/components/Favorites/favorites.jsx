@@ -1,5 +1,5 @@
 import { useDispatch, useSelector, useEffect } from 'react-redux';
-import { filterCards, orderCards} from '../redux/actions/actions';
+import { filterCards, orderCards} from '../../redux/actions/actions';
 import Card from '../Cards/Card/Card';
 import { useState } from 'react';
 import style from './favorites.module.css'
