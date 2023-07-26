@@ -3,20 +3,19 @@ import Card from './Card/Card';
 import style from './Cards.module.css';
 import Paginate from './Paginate/Paginate';
 import {useEffect, useState} from 'react';
-import {getAllCharacter} from '../../redux/actions/actions';
+import {getPageCharacter} from '../../redux/actions/actions';
 
 export default function Cards() {
+      const {numPage} = useSelector((state) => state);
       const [isLoading, setLoading] = useState(true);
       const dispatch = useDispatch();
 
       if(isLoading) <div>Loading...</div>;
       useEffect(() => {
-            dispatch(getAllCharacter());
+            dispatch(getPageCharacter(numPage));
             setLoading(false);
       }, []);
-
       const {allCharacter} = useSelector((state) => state);
-      let cantPages = Math.floor(allCharacter.length / 6);
 
       return (
             <div>

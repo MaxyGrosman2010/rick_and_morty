@@ -14,7 +14,7 @@ export default function Paginate(){
 
     return(
         <div className={style.contains}>
-            {numPage != 1 ? (<button className={style.button} onClick={first}>First
+            {numPage !== 1 ? (<button className={style.button} onClick={first}>First
             </button>) : null}
             {numPage > 1 ? (<button className={style.button} onClick={prev}>{"<-"}</button>
                 ) : null}

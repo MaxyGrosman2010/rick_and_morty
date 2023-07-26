@@ -1,8 +1,10 @@
 import {ADD_FAV, REMOVE_FAV, FILTER_CARDS, ORDER_CARDS, ON_SEARCH, ON_CLOSE, 
     GET_DETAIL_CHARACTER, CHARACTER_PAGE, LOGIN, SIGNUP} from "./types";
 import axios from "axios";
-require('dotenv').config();
-const {REACT_APP_ENDPOINTCHAR, REACT_APP_ENDPOINTUSER, REACT_APP_ENDPOINTFAV} = process.env;
+import env from 'react-dotenv';
+const endPointChar = env.REACT_APP_ENDPOINTCHAR;
+const endPointUser = env.REACT_APP_ENDPOINTUSER;
+const endPointFav = env.REACT_APP_ENDPOINTFAV;
 
 export const addFav = (character) => {
     return async function (dispatch){
@@ -45,7 +47,7 @@ export const onClose = (id) => {
 export const onSearch = (name) => {
     return async function(dispatch){
         try{
-            let {data} = await axios.get(`${REACT_APP_ENDPOINTCHAR}`, name);
+            let {data} = await axios.get(`${endPointChar}`, name);
             return dispatch({type: ON_SEARCH, payload: data});
         }catch(error){window.alert("The character was not found: ", error)};
     };
@@ -53,7 +55,7 @@ export const onSearch = (name) => {
 
 export const getDetailCharacter = (id) => {
     return async function(dispatch){
-        const response = await axios(`${REACT_APP_ENDPOINTCHAR}${id}`)
+        const response = await axios(`${endPointChar}${id}`)
         return dispatch({type: GET_DETAIL_CHARACTER, payload: response});
     };
 };
@@ -69,7 +71,7 @@ export const getPageCharacter = (page) => {
 export const login = (user) => {
     return async(dispatch) => {
         try{
-            const response = await axios(`${REACT_APP_ENDPOINTUSER}login`, user);
+            const response = await axios(`${endPointUser}login`, user);
             return dispatch({type: LOGIN, payload: response});
         }catch(error){window.alert(error)};
     };
@@ -78,7 +80,7 @@ export const login = (user) => {
 export const signUp = (user) => {
     return async(dispatch) => {
         try{
-            await axios.post(`${REACT_APP_ENDPOINTUSER}/signup`, user);
+            await axios.post(`${endPointUser}/signup`, user);
             return dispatch({type:SIGNUP});
         }catch(error){window.alert(error)};
     };

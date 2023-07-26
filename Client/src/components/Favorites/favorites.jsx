@@ -1,7 +1,7 @@
-import { useDispatch, useSelector, useEffect } from 'react-redux';
-import { filterCards, orderCards} from '../../redux/actions/actions';
+import {useDispatch, useSelector} from 'react-redux';
+import {filterCards, orderCards} from '../../redux/actions/actions';
 import Card from '../Cards/Card/Card';
-import { useState } from 'react';
+import {useState} from 'react';
 import style from './favorites.module.css'
 
 export default function Favorites(){
@@ -17,14 +17,12 @@ export default function Favorites(){
 
     return(
         <div >
-
             <div className={style.options}>
                 <select className={style.selectors} name="sortAOrD" onChange={handleOrder}>
                     <option value="order">Orden by:</option>
                     <option value="A">Ascendant</option>
                     <option value="D">Descendant</option>
                 </select>
-
                 <select className={style.selectors} name="sortGender" onChange={handleFilter}>
                     <option value="filter" disabled="disable">Filter by:</option>
                     <option value="Male">Male</option>
@@ -34,7 +32,6 @@ export default function Favorites(){
                     <option value="All">All Characters</option>
                 </select>
             </div>
-
             <div className={style.contains} >
                 {myFavorite && myFavorite.map((character) => <Card
                             id={character.id}

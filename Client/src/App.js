@@ -1,5 +1,5 @@
 import React from 'react';
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
 import style from './App.module.css';
 import Nav from './components/Nav/Nav';
 import About from './components/About/About';
@@ -15,7 +15,7 @@ export default function App() {
 
          {<img src='rickAndMorty.png' alt='logo'></img>}
 
-         <Nav logout={logout} />
+         <Nav />
          {/* <link rel="stylesheet" href="https://use.typekit.net/zoz7gnu.css"></link> */}
          <Routes>
             <Route path='/' element={<Form />}/>
