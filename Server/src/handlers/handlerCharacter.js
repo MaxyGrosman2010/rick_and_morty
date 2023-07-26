@@ -50,10 +50,14 @@ const getCharactersPage = (req, res) => {
     try{
         const {page} = req.query;
 
-        if(!page) return res.status(404).json({message: "Please send a correct page"});
-        if(page > cantPage) return res.status(404).json({message: "This page doesn't exist"});
+        if(!page) 
+            return res.status(404).json({message: "Please send a correct page"});
+        if(page === 0) 
+            return res.status(404).json({message: "This page doesn't exist"});
+        if(page > cantPage) 
+            return res.status(404).json({message: "This page doesn't exist"});
         let from = page - 1;
-        let response = charactersCache.slice(from * 6, page * 6);
+        let response = {characters: charactersCache.slice(from * 6, page * 6), cantPage};
 
         res.status(200).json(response);
     }catch(error){ res.status(500).json(error)};
