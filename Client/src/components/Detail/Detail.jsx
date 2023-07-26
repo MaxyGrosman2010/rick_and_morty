@@ -4,20 +4,15 @@ import {useDispatch, useSelector} from 'react-redux';
 import {getDetailCharacter} from '../../redux/actions/actions';
 
 export default function Detail(){
-
     const {id} = useParams();
     const dispatch = useDispatch();
     const [isLoading, setLoading] = useState(true);
 
     if(isLoading) <div>Loading...</div>;
-    
     useEffect(() => {
         dispatch(getDetailCharacter(id));
         setLoading(!isLoading);
-
     }, [id]);
-
-    
 
     const character = useSelector((state) => state.detailCharacter);
 
