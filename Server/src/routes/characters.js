@@ -4,9 +4,7 @@ const {getCharById, getCharactersPage, getCharacterName} = require('../handlers/
 const verifyToken = require('../middleware/verifyToken');
 
 router.get("/:id", getCharById);
-router.get('/', getCharacterName);
+router.get('/name', getCharacterName);
 router.get("/", getCharactersPage);
-
-//verifyToken,
 
 module.exports = router;
