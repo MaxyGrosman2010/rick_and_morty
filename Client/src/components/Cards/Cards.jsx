@@ -28,7 +28,7 @@ export default function Cards() {
                               image={character.image} />)}
                   </div>
                   <div>
-                        <Paginate cantPages={cantPages} />
+                        <Paginate />
                   </div>
             </div>
       );
