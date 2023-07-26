@@ -4,7 +4,6 @@ import style from './Form.module.css';
 import {login} from '../../redux/actions/actions';
 
 export default function Form(){
-
     const [userData, setData] = useState({
         email: "",
         password: ""
@@ -18,7 +17,6 @@ export default function Form(){
     };
     const handleSubmit = (event) => {
         event.preventDefault();
-
         if(Object.values(errors).length === 0){ 
             login(userData);
             setData({email: "", password: ""});

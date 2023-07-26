@@ -10,7 +10,6 @@ export default function Cards() {
       const dispatch = useDispatch();
 
       if(isLoading) <div>Loading...</div>;
-
       useEffect(() => {
             dispatch(getAllCharacter());
             setLoading(false);
@@ -28,7 +27,6 @@ export default function Cards() {
                               gender={character.gender} origin={character.origin} 
                               image={character.image} />)}
                   </div>
-
                   <div>
                         <Paginate cantPages={cantPages} />
                   </div>
