@@ -1,7 +1,6 @@
 const axios = require('axios');
 require('dotenv').config();
-const findCharacterById = require('../controllers/findCharacterId');
-const findCharacterByName = require('../controllers/findCharacterByName');
+const {findCharacterById, findCharacterByName} = require('../controllers/indexCharacter');
 const {URL_API} = process.env;
 
 var charactersCache = [];
@@ -15,7 +14,6 @@ const allCharacters = async() => {
             let {data} = await axios(`${urlCheck}`);
             let {info} = data;
             urlCheck = info.next;
-
             for(let element of data.results) {
                 let {origin} = element;
                 let character = { id: element.id, status: element.status, 
@@ -34,7 +32,6 @@ const allCharacters = async() => {
 const getCharById = async(req, res) => {
     try{
         const {id} = req.params;
-
         if(!id) return res.status(404).json({message: "Please send a valid ID"});
 
         let {data} = await findCharacterById(id);
@@ -66,6 +63,7 @@ const getCharacterName = async(req, res) => {
         let {data} = await findCharacterByName(name);
         let {info} = data;
         let urlNext = info.next;
+        charactersCache = [];
 
         for(let element of data.results){
             let {origin} = element;
@@ -78,7 +76,6 @@ const getCharacterName = async(req, res) => {
             let {data} = await axios(`${urlNext}`);
             let {info} = data;
             urlNext = info.next;
-
             for(let element of data.results) {
                 let {origin} = element;
                 let character = { id: element.id, status: element.status, 
@@ -89,14 +86,28 @@ const getCharacterName = async(req, res) => {
         };
 
         cantPage = Math.ceil(charactersCache.length / 6);
-        let response = charactersCache.slice(0, 6);
+        let response = {characters: charactersCache.slice(0, 6), cantPage};
         return res.status(200).json(response);
     }catch(error){res.status(500).json(error)};
+};
+
+const getCharacterGender = async(req, res) => {
+    try{
+        const {gender} = req.body;
+        
+        if(!gender) return res.status(404).json({error: "Please send a gender"});
+        charactersCache = charactersCache.filter((character) => character.gender === gender);
+
+        cantPage = Math.ceil(charactersCache.length / 6);
+        let response = {characters: charactersCache.slice(0, 6), cantPage};
+        return res.status(200).json(response);
+    }catch(error){res.status.json(error)};
 };
 
 module.exports = {
     allCharacters,
     getCharById,
     getCharactersPage,
-    getCharacterName
+    getCharacterName,
+    getCharacterGender
 };
