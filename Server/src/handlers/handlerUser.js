@@ -26,7 +26,7 @@ const logIn = async(req, res) => {
 
         const token = await createToken(exist);
         res.cookie('token', token);
-        return res.status(202).json({name: exist.name});
+        return res.status(202).json({name: exist.name, role: exist.role});
     }catch(error){ return res.status(500).json(error) };
 };
 

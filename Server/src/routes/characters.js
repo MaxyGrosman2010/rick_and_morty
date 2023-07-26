@@ -3,8 +3,10 @@ const router = express.Router();
 const {getCharById, getCharactersPage, getCharacterName} = require('../handlers/handlerCharacter');
 const verifyToken = require('../middleware/verifyToken');
 
-router.get("/:id", verifyToken, getCharById);
-router.get('/name',verifyToken, getCharacterName);
-router.get("/", verifyToken, getCharactersPage);
+router.get("/:id", getCharById);
+router.get('/', getCharacterName);
+router.get("/", getCharactersPage);
+
+//verifyToken,
 
 module.exports = router;
