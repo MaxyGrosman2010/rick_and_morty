@@ -25,8 +25,7 @@ const logIn = async(req, res) => {
         if(!valid) return res.status(422).json({error: "This credential isn't valid"});
 
         const token = await createToken(exist);
-        res.cookie('token', token);
-        return res.status(202).json({name: exist.name, role: exist.role});
+        return res.status(202).send({name: exist.name, role: exist.role, token: token});
     }catch(error){ return res.status(500).json(error) };
 };
 
