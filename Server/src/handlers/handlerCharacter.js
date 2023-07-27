@@ -1,6 +1,7 @@
 const axios = require('axios');
 require('dotenv').config();
-const {findCharacterById, findCharacterByName} = require('../controllers/indexCharacter');
+const {findCharacterById, findCharacterByName, 
+    loadRoundOfChar} = require('../controllers/indexCharacter');
 const {URL_API} = process.env;
 
 var charactersCache = [];
@@ -14,13 +15,8 @@ const allCharacters = async() => {
             let {data} = await axios(`${urlCheck}`);
             let {info} = data;
             urlCheck = info.next;
-            for(let element of data.results) {
-                let {origin} = element;
-                let character = { id: element.id, status: element.status, 
-                    name: element.name, species: element.species, origin: origin.name, 
-                    image: element.image, gender: element.gender };
-                    charactersCache.push(character);
-            };
+            let load = loadRoundOfChar(data.results);
+            charactersCache = [...charactersCache, ...load];
         };
 
         cantPage = Math.ceil(charactersCache.length / 6);
@@ -63,28 +59,15 @@ const getCharacterName = async(req, res) => {
         let {data} = await findCharacterByName(name);
         let {info} = data;
         let urlNext = info.next;
-        charactersCache = [];
-
-        for(let element of data.results){
-            let {origin} = element;
-            let character = { id: element.id, status: element.status, 
-                name: element.name, species: element.species, origin: origin.name, 
-                image: element.image, gender: element.gender };
-            charactersCache.push(character);
-        };
+        let load = loadRoundOfChar(data.results);
+        charactersCache = [...load];
         while(urlNext){
             let {data} = await axios(`${urlNext}`);
             let {info} = data;
             urlNext = info.next;
-            for(let element of data.results) {
-                let {origin} = element;
-                let character = { id: element.id, status: element.status, 
-                    name: element.name, species: element.species, origin: origin.name, 
-                    image: element.image, gender: element.gender };
-                charactersCache.push(character);
-            };
+            let load = loadRoundOfChar(data.results);
+            charactersCache = [...charactersCache, ...load];
         };
-
         cantPage = Math.ceil(charactersCache.length / 6);
         let response = {characters: charactersCache.slice(0, 6), cantPage};
         return res.status(200).json(response);
@@ -104,10 +87,5 @@ const getCharacterGender = async(req, res) => {
     }catch(error){res.status.json(error)};
 };
 
-module.exports = {
-    allCharacters,
-    getCharById,
-    getCharactersPage,
-    getCharacterName,
-    getCharacterGender
-};
+module.exports = {allCharacters, getCharById, getCharactersPage, getCharacterName,
+    getCharacterGender};
