@@ -62,8 +62,9 @@ export const getDetailCharacter = (id) => {
 
 export const getPageCharacter = (page) => {
     return async function(dispatch){
-        const data = await axios(`${endPointChar}?page=${page}`);
-        const response = {characters: data.characters, page: page, cantPage: data.cantPage};
+        const {data} = await axios(`${endPointChar}?page=${page}`);
+        const response = {characters: data?.characters, page: page, 
+            cantPage: data?.cantPage};
         return dispatch({type: CHARACTER_PAGE, payload: response});
     };
 };
@@ -71,7 +72,7 @@ export const getPageCharacter = (page) => {
 export const login = (user) => {
     return async(dispatch) => {
         try{
-            const response = await axios(`${endPointUser}login`, user);
+            const response = await axios.post(`${endPointUser}login`, user);
             return dispatch({type: LOGIN, payload: response});
         }catch(error){window.alert(error)};
     };

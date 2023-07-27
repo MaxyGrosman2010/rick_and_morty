@@ -10,7 +10,7 @@ export default function Card({id, name, status, species, gender, origin, image})
 
    const [isFavorite, setFavorite] = useState(false);
    const dispatch = useDispatch();
-   const myFavorite = useSelector((state) => state.myFavorite);
+   const allFavorite = useSelector((state) => state.allFavorite);
 
    const handleFavorite = () => {
 
@@ -27,13 +27,13 @@ export default function Card({id, name, status, species, gender, origin, image})
 
    useEffect(() => {
       
-      myFavorite.forEach((fav) => {
+      allFavorite.forEach((fav) => {
          if (fav.id === id) {
             setFavorite(true);
          }
       });
 
-   }, [myFavorite]);
+   }, [allFavorite]);
 
    return (
 

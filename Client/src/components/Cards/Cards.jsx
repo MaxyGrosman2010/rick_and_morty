@@ -15,7 +15,10 @@ export default function Cards() {
             dispatch(getPageCharacter(numPage));
             setLoading(false);
       }, []);
+      
       const {allCharacter} = useSelector((state) => state);
+
+      console.log(allCharacter);
 
       return (
             <div>
