@@ -1,4 +1,5 @@
-const {addFavorite, allFavorites, findFavorite} = require('../controllers/indexFavorite');
+const {addFavorite, allFavorites, findFavorite, 
+    deleteFavorite} = require('../controllers/indexFavorite');
 
 const postFav = async(req, res) => {
     try{
@@ -16,19 +17,14 @@ const postFav = async(req, res) => {
     }catch(error) {res.status(404).json({message: error.message});};
 };
 
-function deleteFav(req, res){
+const deleteFav = async(req, res) => {
     try{
-        const {id} = req.params;
-
+        const {id, userId} = req.params;
         if(!id) return res.status(404).json({message: "There isn't an id here"});
-
-        myFavorites = myFavorites.filter(element => element.id !== Number(id));
-        return res.status(200).json(myFavorites);
-
+        await deleteFavorite(id);
+        const response = await allFavorites(userId);
+        return res.status(200).json(response);
     }catch(error) {res.status(404).json({message: error.message});};
 };
 
-module.exports = {
-    postFav,
-    deleteFav
-};
+module.exports = {postFav, deleteFav};
