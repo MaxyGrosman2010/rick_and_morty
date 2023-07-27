@@ -3,14 +3,12 @@ require('dotenv').config();
 const {findCharacterById, findCharacterByName, 
     loadRoundOfChar} = require('../controllers/indexCharacter');
 const {URL_API} = process.env;
-
 var charactersCache = [];
 var cantPage = 0;
 
 const allCharacters = async() => {
     try{
         let urlCheck = URL_API;
-
         while(urlCheck){
             let {data} = await axios(`${urlCheck}`);
             let {info} = data;
@@ -29,7 +27,6 @@ const getCharById = async(req, res) => {
     try{
         const {id} = req.params;
         if(!id) return res.status(404).json({message: "Please send a valid ID"});
-
         let {data} = await findCharacterById(id);
         let {origin} = data;
         let response = {id: data?.id, status: data?.status, name: data?.name, 
@@ -42,7 +39,6 @@ const getCharById = async(req, res) => {
 const getCharactersPage = (req, res) => {
     try{
         const {page} = req.query;
-
         if(!page) return res.status(404).json({message: "Please send a correct page"});
         if(page <= 0) return res.status(404).json({message: "This page doesn't exist"});
         if(page > cantPage) return res.status(404).json({message: "This page doesn't exist"});
@@ -59,7 +55,7 @@ const getCharacterName = async(req, res) => {
         let {data} = await findCharacterByName(name);
         let {info} = data;
         let urlNext = info.next;
-        let load = loadRoundOfChar(data.results);
+        let load = loadRoundOfChar(data.result);
         charactersCache = [...load];
         while(urlNext){
             let {data} = await axios(`${urlNext}`);
@@ -77,15 +73,24 @@ const getCharacterName = async(req, res) => {
 const getCharacterGender = async(req, res) => {
     try{
         const {gender} = req.body;
-        
         if(!gender) return res.status(404).json({error: "Please send a gender"});
         charactersCache = charactersCache.filter((character) => character.gender === gender);
-
         cantPage = Math.ceil(charactersCache.length / 6);
         let response = {characters: charactersCache.slice(0, 6), cantPage};
         return res.status(200).json(response);
-    }catch(error){res.status.json(error)};
+    }catch(error){res.status(500).json(error)};
+};
+
+const getSortedCharacters = async(req, res) => {
+    try{
+        const {sort} = req.body;
+        !sort ? charactersCache.sort((a,b) => a.id - b.id) : sort === "A" ? 
+        charactersCache.sort((a,b) => a.name.localeCompare(b.name)) : 
+        charactersCache.sort((a,b) => b.name.localeCompare(a.name));
+        let response = {characters: charactersCache.slice(0, 6), cantPage};
+        return res.status(200).json(response);
+    }catch(error){return res.status(500).json(error)};
 };
 
 module.exports = {allCharacters, getCharById, getCharactersPage, getCharacterName,
-    getCharacterGender};
+    getCharacterGender, getSortedCharacters};
