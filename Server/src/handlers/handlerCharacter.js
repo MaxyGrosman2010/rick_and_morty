@@ -55,7 +55,9 @@ const getCharacterName = async(req, res) => {
         let {data} = await findCharacterByName(name);
         let {info} = data;
         let urlNext = info.next;
-        let load = loadRoundOfChar(data.result);
+        console.log(data);
+        let load = loadRoundOfChar(data.results);
+        console.log(3);
         charactersCache = [...load];
         while(urlNext){
             let {data} = await axios(`${urlNext}`);
@@ -64,8 +66,10 @@ const getCharacterName = async(req, res) => {
             let load = loadRoundOfChar(data.results);
             charactersCache = [...charactersCache, ...load];
         };
+        console.log(4);
         cantPage = Math.ceil(charactersCache.length / 6);
         let response = {characters: charactersCache.slice(0, 6), cantPage};
+        console.log(5);
         return res.status(200).json(response);
     }catch(error){res.status(500).json(error)};
 };

@@ -1,3 +1,3 @@
-const {Favorite} = require('../DB_connection');
+const {Favorite, User} = require('../DB_connection');
 
-module.exports = (id) => Favorite.findAll({where: {user_id: id}});
+module.exports = async(id) => await Favorite.findAll({include: [{ model: User, id: id}]});

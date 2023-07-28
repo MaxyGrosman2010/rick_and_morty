@@ -22,7 +22,7 @@ const logIn = async(req, res) => {
         if(!exist) return res.status(422).json({error: "This user doesn't exist"});
 
         const valid = await validatePassword(password, exist.password);
-        if(!valid) return res.status(422).json({error: "This credential isn't valid"});
+        if(!valid) return res.status(422).json({error: "This password isn't valid"});
 
         const token = await createToken(exist);
         return res.status(202).send({name: exist.name, role: exist.role, token: token});

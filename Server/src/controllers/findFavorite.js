@@ -1,3 +1,3 @@
-const {Favorite} = require("../DB_connection");
+const {Favorite, User} = require("../DB_connection");
 
-module.exports = (id, userId) => Favorite.findOne({where: {id: id, user_id: userId}});
+module.exports = (id) => Favorite.findOne({where: {id: id}});
