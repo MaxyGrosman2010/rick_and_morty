@@ -61,11 +61,3 @@ export const getPageCharacter = (page) => {
         return dispatch({type: CHARACTER_PAGE, payload: response});
     };
 };
-
-// export const signUp = (user) => {
-//     return async(dispatch) => {
-//         try{
-//             await axios.post(`${endPointUser}/signup`, user);
-//         }catch(error){window.alert(error)};
-//     };
-// };

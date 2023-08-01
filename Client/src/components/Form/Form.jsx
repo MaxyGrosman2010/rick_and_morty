@@ -1,4 +1,4 @@
-import validation from "../../validation";
+import {validationLogin} from "../../validation";
 import {useState} from "react";
 import style from './Form.module.css';
 import axios from 'axios';
@@ -15,7 +15,7 @@ export default function Form(){
     const navigate = useNavigate();
 
     const handleChange = (event) => {
-        setErrors(validation({...userData, [event.target.name]: event.target.value}));
+        setErrors(validationLogin({...userData, [event.target.name]: event.target.value}));
         setData({...userData, [event.target.name]: event.target.value});
     };
     const handleSubmit = (event) => {
@@ -24,8 +24,12 @@ export default function Form(){
             axios.post(`${endPointUser}login`, userData).then(({data}) => {
                 setToken(data?.token);
                 let fullname = data?.name.split(" ");
-                let response = {name: fullname.shift().trim(), lastName: fullname.pop().trim(), 
+                let response;
+                if(fullname.length === 3) response = {name: fullname.shift().trim(), 
+                    middleName: fullname.shift().trim(), lastName: fullname.pop().trim(), 
                     role: data?.role};
+                else response = {name: fullname.shift().trim(), 
+                    lastName: fullname.pop().trim(), role: data?.role};
                 setUser(response);
                 setData({email: "", password: ""});
                 setErrors({});
@@ -51,7 +55,8 @@ export default function Form(){
                 <input className={style.checkbox} type="checkbox" checked={isShow} 
                 onChange={() => setShow(!isShow)}/>
                 <p className={style.error} >{errors.password}</p>
-                {userData.email !== "" && Object.keys(errors).length === 0 &&
+                {userData.email !== "" && userData.password !== "" && 
+                Object.keys(errors).length === 0 && 
                 <button name="submit" type="submit">Log In</button>}
             </form>
         </div>

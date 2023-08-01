@@ -6,9 +6,7 @@ import './index.css';
 import App from './App';
 import store from './redux/store/store';
 
-
 ReactDOM.render(
-  
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>

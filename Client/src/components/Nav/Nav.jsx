@@ -4,12 +4,9 @@ import style from './Nav.module.css';
 import {deleteAll} from "../../utils/localStorage";
 
 export default function Nav(){
-
     let location = useLocation();
     let navigate = useNavigate();
-
-    if(location.pathname === `/`) return null;
-
+    
     const handleLogout = () => {
         deleteAll();
         navigate('/');
