@@ -57,3 +57,13 @@
     border: none;
     color: green;
 }
+
+.move{
+    width: 5%;
+    display: inline-block;
+    margin-left: 2%;
+    background-color: #074d2c;
+    border-color: #074d2c;
+    border: none;
+    color: green;
+}

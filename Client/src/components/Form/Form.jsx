@@ -4,7 +4,7 @@ import style from './Form.module.css';
 import axios from 'axios';
 import {setToken, setUser} from "../../utils/localStorage";
 import env from 'react-dotenv';
-import {useNavigate} from "react-router-dom";
+import {useNavigate, Link} from "react-router-dom";
 
 const endPointUser = env.REACT_APP_ENDPOINTUSER;
 
@@ -45,20 +45,27 @@ export default function Form(){
         <div className={style.contains} >
             <form className={style.form} onSubmit={handleSubmit}>
                 <p>Login</p>
+
                 <label className={style.usernameLabel} >Email: </label>
                 <input className={style.username} name="email" type="text" 
                 value={userData.email} onChange={handleChange}/>
                 <p className={style.error} >{errors.email}</p>
+
                 <label className={style.passwordLabel} >Password: </label>
                 <input className={style.password} name="password" type={isShow ? "text" : 
                 "password"} value={userData.password} onChange={handleChange}/>
                 <input className={style.checkbox} type="checkbox" checked={isShow} 
                 onChange={() => setShow(!isShow)}/>
                 <p className={style.error} >{errors.password}</p>
-                {userData.email !== "" && userData.password !== "" && 
-                Object.keys(errors).length === 0 && 
-                <button name="submit" type="submit">Log In</button>}
+
+                {Object.keys(errors).length === 0 && userData.email !== "" && 
+                userData.password !== "" &&  <button className={style.submit} 
+                name="submit" type="submit">Log In</button>}
             </form>
+
+            <Link to={'/signUp'} >
+                <button className={style.move} >Sign Up</button>
+            </Link>
         </div>
     );
 };

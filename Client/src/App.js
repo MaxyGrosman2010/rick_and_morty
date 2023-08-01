@@ -12,14 +12,14 @@ import SignUp from './components/Form/signUp';
 
 export default function App() {
    const {pathname} = useLocation();
-   const dictionary = {'/home': true, '/about': true, '/favorites': true, };
+   const dictionary = {'/home': true, '/about': true, '/favorites': true, 
+      '/detail/:id': true};
 
    return (
       <div className={style.contains}>
 
          {<img src='rickAndMorty.png' alt='logo'></img>}
          {dictionary[pathname] && <div> <Nav /> </div>}
-         <Nav />
          {/* <link rel="stylesheet" href="https://use.typekit.net/zoz7gnu.css"></link> */}
          <Routes>
             <Route path='/' element={<Form />}/>

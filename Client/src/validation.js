@@ -1,34 +1,52 @@
 const validationLogin = (inputs) => {
-    const regexEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-    const regexPassword = /^(?=.+\d).{6,10}$/gm;
-    let error = {};
-    if(inputs.email) {
-        if(inputs.email.length < 35){
-            if(!regexEmail.test(inputs.email)) error.email = "No es un email";
+    let regexEmail = /\S+@\S+\.\S+/;
+    let errors = {};
 
-        }else error.email = "Es muy largo para ser un email";
+    if(!inputs.email) {
+        errors.email = 'Email is required';
+    }else if(!regexEmail.test(inputs.email)) {
+        errors.email = 'Invalid email format';
     };
-    if(inputs.password){
-        if(!regexPassword.test(inputs.password)) error.password = "No cumple las condiciones para ser un password";
+    
+    if(!inputs.password) {
+        errors.password = 'Password required';
     };
-    return error;
+    
+    return errors;
 };
 
 const validationSignUp = (inputs) => {
-    const regexEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-    const regexPassword = /^(?=.+\d).{6,10}$/gm;
-    let error = {};
-    if(inputs.name) ;
-    if(inputs.email) 
-        if(inputs.email.length < 35)
-            if(!regexEmail.test(inputs.email))
-                error.email = "No es un email";
-        else error.email = "Es muy largo para ser un email";
-    if(inputs.password)
-        if(!regexPassword.test(inputs.password)) 
-            error.password = "No cumple las condiciones para ser un password";
-    if(inputs.repeat !== inputs.password) error.repeat = "Invalido, las passwords no son iguales";
-    return error;
+    let errors = {};
+    let regexName = /^[a-zA-ZÀ-ÿ\u00f1\u00d1 ]*$/;
+    let regexEmail = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+    let regexPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+    
+    if(!inputs.name) {
+        errors.name = 'Name is required';
+    }else if(!regexName.test(inputs.name)) {
+        errors.name = 'Invalid name';
+    };
+
+  if(!inputs.email) {
+    errors.email = 'Email is required';
+  }else if(!regexEmail.test(inputs.email)) {
+    errors.email = 'Invalid email';
+  };
+
+  if(!inputs.password) {
+    errors.password = 'Password is required'; 
+  }else if(!regexPassword.test(inputs.password)) {
+    errors.password ='Password must contain at least 8 characters, including letters, numbers, and special characters.';
+  };
+
+  if(inputs.password !== inputs.repeat){
+    errors.password = 'No match passwords';
+    errors.repeatPassword = 'No match passwords'
+  } else if (!inputs.repeat){
+    errors.repeatPassword = 'No match passwords'
+  };
+
+  return errors;
 };
 
 module.exports = {validationLogin, validationSignUp};
