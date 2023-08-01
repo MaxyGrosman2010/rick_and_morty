@@ -16,7 +16,6 @@ const allCharacters = async() => {
             let load = loadRoundOfChar(data.results);
             charactersCache = [...charactersCache, ...load];
         };
-
         cantPage = Math.ceil(charactersCache.length / 6);
         console.log('cache loaded', cantPage);
         return charactersCache;
@@ -44,7 +43,6 @@ const getCharactersPage = (req, res) => {
         if(page > cantPage) return res.status(404).json({message: "This page doesn't exist"});
         let from = page - 1;
         let response = {characters: charactersCache.slice(from * 6, page * 6), cantPage};
-
         res.status(200).json(response);
     }catch(error){ res.status(500).json(error)};
 };
@@ -55,9 +53,7 @@ const getCharacterName = async(req, res) => {
         let {data} = await findCharacterByName(name);
         let {info} = data;
         let urlNext = info.next;
-        console.log(data);
         let load = loadRoundOfChar(data.results);
-        console.log(3);
         charactersCache = [...load];
         while(urlNext){
             let {data} = await axios(`${urlNext}`);
@@ -66,10 +62,8 @@ const getCharacterName = async(req, res) => {
             let load = loadRoundOfChar(data.results);
             charactersCache = [...charactersCache, ...load];
         };
-        console.log(4);
         cantPage = Math.ceil(charactersCache.length / 6);
         let response = {characters: charactersCache.slice(0, 6), cantPage};
-        console.log(5);
         return res.status(200).json(response);
     }catch(error){res.status(500).json(error)};
 };
@@ -80,6 +74,7 @@ const getCharacterGender = async(req, res) => {
         if(!gender) return res.status(404).json({error: "Please send a gender"});
         charactersCache = charactersCache.filter((character) => character.gender === gender);
         cantPage = Math.ceil(charactersCache.length / 6);
+        
         let response = {characters: charactersCache.slice(0, 6), cantPage};
         return res.status(200).json(response);
     }catch(error){res.status(500).json(error)};
@@ -91,6 +86,7 @@ const getSortedCharacters = async(req, res) => {
         !sort ? charactersCache.sort((a,b) => a.id - b.id) : sort === "A" ? 
         charactersCache.sort((a,b) => a.name.localeCompare(b.name)) : 
         charactersCache.sort((a,b) => b.name.localeCompare(a.name));
+
         let response = {characters: charactersCache.slice(0, 6), cantPage};
         return res.status(200).json(response);
     }catch(error){return res.status(500).json(error)};
