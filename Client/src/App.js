@@ -1,5 +1,5 @@
 import React from 'react';
-import {Routes, Route, useLocation} from 'react-router-dom';
+import {Routes, Route, useLocation, Link} from 'react-router-dom';
 import style from './App.module.css';
 import Nav from './components/Nav/Nav';
 import About from './components/About/About';
@@ -18,7 +18,8 @@ export default function App() {
    return (
       <div className={style.contains}>
 
-         {<img src='rickAndMorty.png' alt='logo'></img>}
+         {dictionary[pathname] ? <Link to='/home' ><img src='rickAndMorty.png' alt='logo' /></Link> : 
+         <Link to="/" ><img src='rickAndMorty.png' alt='logo' /></Link>}
          {dictionary[pathname] && <div> <Nav /> </div>}
          {/* <link rel="stylesheet" href="https://use.typekit.net/zoz7gnu.css"></link> */}
          <Routes>

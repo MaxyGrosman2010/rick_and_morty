@@ -12,9 +12,6 @@ export default function Nav(){
     };
     return(
         <div className={style.contains} >
-            <Link to='/home'>
-                <button className={style.button} >Home</button>
-            </Link>
             <Link to='/about'>
                 <button className={style.button} >About</button>
             </Link>

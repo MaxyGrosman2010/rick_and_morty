@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {useNavigate, Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {validationSignUp} from '../../validation';
 import axios from 'axios';
 import env from 'react-dotenv';
@@ -60,10 +60,6 @@ export default function SignUp(){
                 signUpData.repeat !== "" && <button className={style.submit} 
                 name="submit" type="submit">Sign Up</button>}
             </form>
-
-            <Link to='/' >
-                <button className={style.move} >Log In</button>
-            </Link>
         </div>
     );
 };
