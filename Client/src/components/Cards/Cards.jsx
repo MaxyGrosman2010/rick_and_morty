@@ -17,9 +17,7 @@ export default function Cards() {
       }, []);
       
       const {allCharacter} = useSelector((state) => state);
-
       console.log(allCharacter);
-
       return (
             <div>
                   <div className={style.contains} >

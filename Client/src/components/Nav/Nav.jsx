@@ -1,12 +1,19 @@
-import { Link, useLocation } from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import SearchBar from "./SearchBar/SearchBar";
-import style from './Nav.module.css'
+import style from './Nav.module.css';
+import {deleteAll} from "../../utils/localStorage";
 
-export default function Nav({ logout }){
+export default function Nav(){
 
-    let location = useLocation(); 
+    let location = useLocation();
+    let navigate = useNavigate();
 
     if(location.pathname === `/`) return null;
+
+    const handleLogout = () => {
+        deleteAll();
+        navigate('/');
+    };
 
     return(
         <div className={style.contains} >
@@ -23,7 +30,7 @@ export default function Nav({ logout }){
                 <button className={style.button} >Favorites</button>
             </Link>
 
-            <button className={style.button} onClick={logout} >Log out</button>
+            <button className={style.button} onClick={handleLogout} >Log out</button>
             
             <SearchBar />
             

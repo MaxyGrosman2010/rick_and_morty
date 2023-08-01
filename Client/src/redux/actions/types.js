@@ -10,6 +10,3 @@ export const ON_CLOSE = "ON_CLOSE";
 //Character management
 export const GET_DETAIL_CHARACTER = "GET_DETAIL_CHARACTER";
 export const CHARACTER_PAGE = "CHARACTER_PAGE";
-//Login y SignUp
-export const LOGIN = "LOGIN";
-export const SIGNUP = "SIGNUP";

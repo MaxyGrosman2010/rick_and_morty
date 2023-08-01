@@ -1,30 +1,40 @@
 import validation from "../../validation";
-import { useState } from "react";
-import {useNavigate} from 'react-router-dom';
-import {useDispatch} from 'react-redux';
+import {useState} from "react";
 import style from './Form.module.css';
-import {login} from '../../redux/actions/actions';
+import axios from 'axios';
+import {setToken, setUser} from "../../utils/localStorage";
+import env from 'react-dotenv';
+import {useNavigate} from "react-router-dom";
+
+const endPointUser = env.REACT_APP_ENDPOINTUSER;
 
 export default function Form(){
     const [userData, setData] = useState({email: "", password: ""});
     const [errors, setErrors] = useState({});
     const [isShow, setShow] = useState(false);
     const navigate = useNavigate();
-    const dispatch = useDispatch();
 
     const handleChange = (event) => {
         setErrors(validation({...userData, [event.target.name]: event.target.value}));
         setData({...userData, [event.target.name]: event.target.value});
     };
-
     const handleSubmit = (event) => {
         event.preventDefault();
         if(Object.values(errors).length === 0){
-            dispatch(login(userData));
-            setData({email: "", password: ""});
-            setErrors({});
-        }else window.alert("El usuario/password no son validos");
-        navigate('/home');
+            axios.post(`${endPointUser}login`, userData).then(({data}) => {
+                setToken(data?.token);
+                let fullname = data?.name.split(" ");
+                let response = {name: fullname.shift().trim(), lastName: fullname.pop().trim(), 
+                    role: data?.role};
+                setUser(response);
+                setData({email: "", password: ""});
+                setErrors({});
+                navigate('/home');
+            }).catch((error) => {
+                window.alert('Este usuario no existe');
+                console.log(error);
+            });
+        }else window.alert('El usuario/password no son validos');
     };
 
     return(
@@ -38,7 +48,8 @@ export default function Form(){
                 <label className={style.passwordLabel} >Password: </label>
                 <input className={style.password} name="password" type={isShow ? "text" : 
                 "password"} value={userData.password} onChange={handleChange}/>
-                <input className={style.checkbox} type="checkbox" checked={isShow} onChange={() => setShow(!isShow)}/>
+                <input className={style.checkbox} type="checkbox" checked={isShow} 
+                onChange={() => setShow(!isShow)}/>
                 <p className={style.error} >{errors.password}</p>
                 {userData.email !== "" && Object.keys(errors).length === 0 &&
                 <button name="submit" type="submit">Log In</button>}

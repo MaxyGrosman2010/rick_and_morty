@@ -1,19 +1,16 @@
 import {ADD_FAV, REMOVE_FAV, FILTER_CARDS, ORDER_CARDS, ON_CLOSE, ON_SEARCH, 
-    GET_DETAIL_CHARACTER, CHARACTER_PAGE, LOGIN, SIGNUP} from "../actions/types";
+    GET_DETAIL_CHARACTER, CHARACTER_PAGE} from "../actions/types";
 
 const initialState ={
     allFavorite: [],
     allCharacter: [],
     detailCharacter: {},
     numPage: 1,
-    user: {},
     cantPage: 0
 };
 
 export const rootReducer = (state = initialState, {type, payload}) => {
-
     switch(type){
-
         case ADD_FAV:
             return {...state, allFavorite: payload};
 
@@ -34,7 +31,6 @@ export const rootReducer = (state = initialState, {type, payload}) => {
         case ON_CLOSE:
             let closeFav = state.allFavorite.filter(character => parseInt(character.id) 
             !== parseInt(payload));
-
             return{...state, allCharacter: state.allCharacter.filter(character => 
                 parseInt(character.id) !== parseInt(payload)), allFavorite: closeFav};
 
@@ -49,12 +45,6 @@ export const rootReducer = (state = initialState, {type, payload}) => {
         case CHARACTER_PAGE:
             return{...state, allCharacter: payload.characters, numPage: payload.page, 
                 cantPage: payload.cantPage};
-        
-        case LOGIN:
-            return {...state, user: payload};
-        
-        case SIGNUP:
-            return state;
 
         default:
             return state;
