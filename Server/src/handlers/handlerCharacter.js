@@ -4,6 +4,7 @@ const {findCharacterById, findCharacterByName,
     loadRoundOfChar} = require('../controllers/indexCharacter');
 const {URL_API} = process.env;
 var charactersCache = [];
+var showCharacters = [];
 var cantPage = 0;
 
 const allCharacters = async() => {
@@ -72,9 +73,24 @@ const getCharacterGender = async(req, res) => {
     try{
         const {gender} = req.query;
         if(!gender) return res.status(404).json({error: "Please send a gender"});
+        if(charactersCache.filter((character) => character.gender === gender).length === 0){
+            let {data} = await findCharacterByName(" ");
+            let {info} = data;
+            let urlNext = info.next;
+            console.log(2);
+            let load = loadRoundOfChar(data.results);
+            charactersCache = [...load];
+            while(urlNext){
+                let {data} = await axios(`${urlNext}`);
+                let {info} = data;
+                urlNext = info.next;
+                let load = loadRoundOfChar(data.results);
+                charactersCache = [...charactersCache, ...load];
+            };
+            cantPage = Math.ceil(charactersCache.length / 6);
+        };
         charactersCache = charactersCache.filter((character) => character.gender === gender);
         cantPage = Math.ceil(charactersCache.length / 6);
-        
         let response = {characters: charactersCache.slice(0, 6), cantPage};
         return res.status(200).json(response);
     }catch(error){res.status(500).json(error)};
