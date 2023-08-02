@@ -22,16 +22,19 @@ export default function Cards() {
 
       return (
             <div>
-                  <div className={style.contains} >
+                  {loading ? <div>Loading...</div> : 
+                  <div>
+                        <div className={style.contains} >
                         {allCharacter && allCharacter.map(character => <Card 
                               id={character.id} key={character.id} name={character.name}
                               status={character.status} species={character.species} 
                               gender={character.gender} origin={character.origin} 
                               image={character.image} />)}
-                  </div>
-                  <div>
-                        <Paginate />
-                  </div>
+                        </div>
+                        <div>
+                              <Paginate />
+                        </div>
+                  </div>}
             </div>
       );
 };
