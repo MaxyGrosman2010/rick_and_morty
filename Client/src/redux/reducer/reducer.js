@@ -7,7 +7,7 @@ const initialState ={
     detailCharacter: {},
     numPage: 1,
     cantPage: 0,
-    loading: true
+    loading: false,
 };
 
 export const rootReducer = (state = initialState, {type, payload}) => {
@@ -19,15 +19,10 @@ export const rootReducer = (state = initialState, {type, payload}) => {
             return {...state, allFavorite: payload};
 
         case FILTER_CARDS:
-            if(payload === "All") 
-                return{...state, allFavorite: state.allFavorite};
-            return{...state, allFavorite: state.allFavorite.filter(character => 
-                payload === character.gender)};
+            return{...state, allCharacter: payload.characters};
 
         case ORDER_CARDS:
-            return{...state, allFavorite: payload === "A" ? 
-            state.allFavorite.sort((a, b) => {return a.id - b.id}) : 
-            state.allFavorite.sort((a, b) => {return b.id - a.id})};
+            return{...state, allCharacter: payload.characters, numPage: 1};
 
         case ON_CLOSE:
             let closeFav = state.allFavorite.filter(character => parseInt(character.id) 
@@ -36,7 +31,7 @@ export const rootReducer = (state = initialState, {type, payload}) => {
                 parseInt(character.id) !== parseInt(payload)), allFavorite: closeFav};
 
         case ON_SEARCH:
-            return{...state, allCharacter: payload.characters, numPage: payload.page, 
+            return{...state, allCharacter: payload.characters, numPage: 1, 
                 cantPage: payload.cantPage};
 
         case GET_DETAIL_CHARACTER:

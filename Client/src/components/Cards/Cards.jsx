@@ -1,9 +1,11 @@
-import {useDispatch, useSelector} from 'react-redux';
-import Card from './Card/Card';
-import style from './Cards.module.css';
-import Paginate from './Paginate/Paginate';
 import {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {getPageCharacter, changeLoading} from '../../redux/actions/actions';
+import Card from './Card/Card';
+import Paginate from './Paginate/Paginate';
+import FilterOrderBar from '../Nav/FilterOrderBar/FilterOrderBar';
+import style from './Cards.module.css';
+
 
 export default function Cards() {
       const {allCharacter, numPage, loading} = useSelector((state) => state);
@@ -12,18 +14,14 @@ export default function Cards() {
       
       useEffect(() => {
             dispatch(getPageCharacter(numPage));
-            dispatch(changeLoading());
       }, []);
-      useEffect(() => {
-            dispatch(changeLoading());
-      }, [allCharacter]);
-      
-      if(loading) <div>Loading...</div>;
+      useEffect(() => {dispatch(changeLoading())}, [allCharacter]);
 
       return (
             <div>
-                  {loading ? <div>Loading...</div> : 
+                  {loading  ? <div>Loading...</div> : 
                   <div>
+                        <FilterOrderBar />
                         <div className={style.contains} >
                         {allCharacter && allCharacter.map(character => <Card 
                               id={character.id} key={character.id} name={character.name}

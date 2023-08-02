@@ -1,4 +1,3 @@
-import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getPageCharacter} from "../../../redux/actions/actions";
 import style from './Paginate.module.css';
@@ -7,10 +6,10 @@ export default function Paginate(){
     const {numPage, cantPage} = useSelector((state) => state)
     const dispatch = useDispatch();
 
-    function next(){dispatch(getPageCharacter(numPage + 1))};
-    function prev(){dispatch(getPageCharacter(numPage - 1))};
-    function first(){dispatch(getPageCharacter(1))};
-    function last(){dispatch(getPageCharacter(cantPage))};
+    const next = () => {dispatch(getPageCharacter(numPage + 1))};
+    const prev = () => {dispatch(getPageCharacter(numPage - 1))};
+    const first = () => {dispatch(getPageCharacter(1))};
+    const last = () => {dispatch(getPageCharacter(cantPage))};
 
     return(
         <div className={style.contains}>

@@ -19,18 +19,32 @@ export const addFav = (character) => {
 export const removeFav = (send) => {
     return async(dispatch) => {
         try{
-            let{data} = await axios.delete(`${endPointFav}delete`, send);
+            let{data} = await axios.delete(`${endPointFav}delete`, send, headers());
             if(data) return dispatch({type: REMOVE_FAV, payload: data});
         }catch(error){window.alert("Remove Favorite did not work:", error)};
     };
 };
 
 export const filterCards = (gender) => {
-    return{type: FILTER_CARDS, payload: gender};
+    return async(dispatch) => {
+        try{
+            if(gender === "All") {
+                var {data} = await axios(`${endPointChar}name?name=${" "}`, headers());
+            }else {
+                var {data} = await axios(`${endPointChar}gender?gender=${gender}`, headers());
+            };
+            return dispatch({type: FILTER_CARDS, payload: data});
+        }catch(error){window.alert('The filter is invalid:', error)};}
 };
 
 export const orderCards = (order) => {
-    return{type: ORDER_CARDS, payload: order};
+    return async(dispatch) => {
+        try{
+            let {data} = await axios(`${endPointChar}sort?sort=${order}`, headers());
+            console.log(data);
+            return dispatch({type: ORDER_CARDS, payload: data});
+        }catch(error){window.alert('The order is invalid:', error)}
+    };
 };
 
 export const onClose = (id) => {
