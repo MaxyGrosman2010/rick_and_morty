@@ -49,7 +49,7 @@ const getCharactersPage = (req, res) => {
 
 const getCharacterName = async(req, res) => {
     try{
-        const {name} = req.body;
+        const {name} = req.query;
         let {data} = await findCharacterByName(name);
         let {info} = data;
         let urlNext = info.next;
