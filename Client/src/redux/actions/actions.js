@@ -29,11 +29,12 @@ export const filterCards = (gender) => {
     return async(dispatch) => {
         try{
             if(gender === "All") {
-                var {data} = await axios(`${endPointChar}name?name=${" "}`, headers());
+                let {data} = await axios(`${endPointChar}name?name=${" "}`, headers());
+                return dispatch({type: FILTER_CARDS, payload: data});
             }else {
-                var {data} = await axios(`${endPointChar}gender?gender=${gender}`, headers());
+                let {data} = await axios(`${endPointChar}gender?gender=${gender}`, headers());
+                return dispatch({type: FILTER_CARDS, payload: data});
             };
-            return dispatch({type: FILTER_CARDS, payload: data});
         }catch(error){window.alert('The filter is invalid:', error)};}
 };
 

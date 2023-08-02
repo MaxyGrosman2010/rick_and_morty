@@ -19,7 +19,7 @@ export const rootReducer = (state = initialState, {type, payload}) => {
             return {...state, allFavorite: payload};
 
         case FILTER_CARDS:
-            return{...state, allCharacter: payload.characters};
+            return{...state, allCharacter: payload.characters, cantPage: payload.cantPage};
 
         case ORDER_CARDS:
             return{...state, allCharacter: payload.characters, numPage: 1};
