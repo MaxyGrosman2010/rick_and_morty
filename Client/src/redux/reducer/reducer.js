@@ -1,5 +1,5 @@
 import {ADD_FAV, REMOVE_FAV, FILTER_CARDS, ORDER_CARDS, ON_CLOSE, ON_SEARCH, 
-    GET_DETAIL_CHARACTER, CHARACTER_PAGE, LOADING} from "../actions/types";
+    GET_DETAIL_CHARACTER, CHARACTER_PAGE, LOADING, RESET_PAGE} from "../actions/types";
 
 const initialState ={
     allFavorite: [],
@@ -42,7 +42,10 @@ export const rootReducer = (state = initialState, {type, payload}) => {
                 cantPage: payload.cantPage};
 
         case LOADING:
-            return {...state, loading: !state.loading}
+            return {...state, loading: !state.loading};
+
+        case RESET_PAGE:
+            return {...state, numPage: 1};
 
         default:
             return state;

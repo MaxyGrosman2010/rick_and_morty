@@ -9,5 +9,7 @@ export const GET_DETAIL_CHARACTER = "GET_DETAIL_CHARACTER";
 export const CHARACTER_PAGE = "CHARACTER_PAGE";
 export const ON_SEARCH = "ON_SEARCH";
 export const ON_CLOSE = "ON_CLOSE";
-//Loading manage
+//Loading management
 export const LOADING = "LOADING";
+//Page management
+export const RESET_PAGE = "RESET_PAGE";

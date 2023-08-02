@@ -1,9 +1,8 @@
 import {ADD_FAV, REMOVE_FAV, FILTER_CARDS, ORDER_CARDS, ON_SEARCH, ON_CLOSE, 
-    GET_DETAIL_CHARACTER, CHARACTER_PAGE, LOADING} from "./types";
+    GET_DETAIL_CHARACTER, CHARACTER_PAGE, LOADING, RESET_PAGE} from "./types";
 import headers from '../../utils/headers';
 import axios from "axios";
 import env from 'react-dotenv';
-
 const endPointChar = env.REACT_APP_ENDPOINTCHAR;
 const endPointFav = env.REACT_APP_ENDPOINTFAV;
 
@@ -42,7 +41,6 @@ export const orderCards = (order) => {
     return async(dispatch) => {
         try{
             let {data} = await axios(`${endPointChar}sort?sort=${order}`, headers());
-            console.log(data);
             return dispatch({type: ORDER_CARDS, payload: data});
         }catch(error){window.alert('The order is invalid:', error)}
     };
@@ -80,4 +78,8 @@ export const getPageCharacter = (page) => {
 
 export const changeLoading = () => {
     return {type: LOADING};
-}
+};
+
+export const resetPage = () => {
+    return {type: RESET_PAGE};
+};

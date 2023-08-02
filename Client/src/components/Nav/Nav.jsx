@@ -1,13 +1,18 @@
 import {Link, useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {deleteAll} from "../../utils/localStorage";
+import {orderCards} from "../../redux/actions/actions";
 import SearchBar from "./SearchBar/SearchBar";
 import style from './Nav.module.css';
-import {deleteAll} from "../../utils/localStorage";
+
 
 export default function Nav(){
     let navigate = useNavigate();
+    let dispatch = useDispatch();
     
     const handleLogout = () => {
         deleteAll();
+        dispatch(orderCards(""));
         navigate('/');
     };
     return(

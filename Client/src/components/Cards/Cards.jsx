@@ -1,6 +1,7 @@
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {getPageCharacter, changeLoading} from '../../redux/actions/actions';
+import {getPageCharacter, changeLoading, orderCards, 
+      resetPage} from '../../redux/actions/actions';
 import Card from './Card/Card';
 import Paginate from './Paginate/Paginate';
 import FilterOrderBar from '../Nav/FilterOrderBar/FilterOrderBar';
@@ -14,6 +15,11 @@ export default function Cards() {
       
       useEffect(() => {
             dispatch(getPageCharacter(numPage));
+
+            return () => {
+                  dispatch(orderCards(""));
+                  dispatch(resetPage());
+            };
       }, []);
       useEffect(() => {dispatch(changeLoading())}, [allCharacter]);
 
