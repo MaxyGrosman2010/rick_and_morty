@@ -1,5 +1,5 @@
 import {ADD_FAV, REMOVE_FAV, FILTER_CARDS, ORDER_CARDS, ON_SEARCH, ON_CLOSE, 
-    GET_DETAIL_CHARACTER, CHARACTER_PAGE} from "./types";
+    GET_DETAIL_CHARACTER, CHARACTER_PAGE, LOADING} from "./types";
 import headers from '../../utils/headers';
 import axios from "axios";
 import env from 'react-dotenv';
@@ -10,16 +10,16 @@ const endPointFav = env.REACT_APP_ENDPOINTFAV;
 export const addFav = (character) => {
     return async function (dispatch){
         try{
-            let {data} = await axios.post(endPointFav, character);
+            let {data} = await axios.post(endPointFav, character, headers());
             if(data) return dispatch({type: ADD_FAV, payload: data});
         }catch(error){window.alert("Add Favorite not found: ", error)};
     };
 };
 
-export const removeFav = (id) => {
+export const removeFav = (send) => {
     return async(dispatch) => {
         try{
-            let{data} = await axios.delete(`${endPointFav}${id}`);
+            let{data} = await axios.delete(`${endPointFav}delete`, send);
             if(data) return dispatch({type: REMOVE_FAV, payload: data});
         }catch(error){window.alert("Remove Favorite did not work:", error)};
     };
@@ -40,9 +40,10 @@ export const onClose = (id) => {
 export const onSearch = (name) => {
     return async function(dispatch){
         try{
-            let {data} = await axios.get(`${endPointChar}`, name, headers());
+            let {data} = await axios.get(`${endPointChar}name?name=${name}`, headers());
             return dispatch({type: ON_SEARCH, payload: data});
-        }catch(error){window.alert("The character was not found: ", error)};
+        }catch(error){
+            window.alert("The character was not found: ", error)};
     };
 };
 
@@ -61,3 +62,7 @@ export const getPageCharacter = (page) => {
         return dispatch({type: CHARACTER_PAGE, payload: response});
     };
 };
+
+export const changeLoading = () => {
+    return {type: LOADING};
+}

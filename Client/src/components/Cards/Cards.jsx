@@ -2,22 +2,24 @@ import {useDispatch, useSelector} from 'react-redux';
 import Card from './Card/Card';
 import style from './Cards.module.css';
 import Paginate from './Paginate/Paginate';
-import {useEffect, useState} from 'react';
-import {getPageCharacter} from '../../redux/actions/actions';
+import {useEffect} from 'react';
+import {getPageCharacter, changeLoading} from '../../redux/actions/actions';
 
 export default function Cards() {
-      const {numPage} = useSelector((state) => state);
-      const [isLoading, setLoading] = useState(true);
+      const {allCharacter, numPage, loading} = useSelector((state) => state);
       const dispatch = useDispatch();
 
-      if(isLoading) <div>Loading...</div>;
+      
       useEffect(() => {
             dispatch(getPageCharacter(numPage));
-            setLoading(false);
+            dispatch(changeLoading());
       }, []);
+      useEffect(() => {
+            dispatch(changeLoading());
+      }, [allCharacter]);
       
-      const {allCharacter} = useSelector((state) => state);
-      console.log(allCharacter);
+      if(loading) <div>Loading...</div>;
+
       return (
             <div>
                   <div className={style.contains} >

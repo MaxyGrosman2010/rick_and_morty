@@ -1,12 +1,13 @@
 import {ADD_FAV, REMOVE_FAV, FILTER_CARDS, ORDER_CARDS, ON_CLOSE, ON_SEARCH, 
-    GET_DETAIL_CHARACTER, CHARACTER_PAGE} from "../actions/types";
+    GET_DETAIL_CHARACTER, CHARACTER_PAGE, LOADING} from "../actions/types";
 
 const initialState ={
     allFavorite: [],
     allCharacter: [],
     detailCharacter: {},
     numPage: 1,
-    cantPage: 0
+    cantPage: 0,
+    loading: true
 };
 
 export const rootReducer = (state = initialState, {type, payload}) => {
@@ -35,9 +36,8 @@ export const rootReducer = (state = initialState, {type, payload}) => {
                 parseInt(character.id) !== parseInt(payload)), allFavorite: closeFav};
 
         case ON_SEARCH:
-            if(!state.allCharacter.some(character => character.id === payload.id))
-                return{...state, allCharacter: payload}
-            else return state;
+            return{...state, allCharacter: payload.characters, numPage: payload.page, 
+                cantPage: payload.cantPage};
 
         case GET_DETAIL_CHARACTER:
             return{...state, detailCharacter: payload};
@@ -45,6 +45,9 @@ export const rootReducer = (state = initialState, {type, payload}) => {
         case CHARACTER_PAGE:
             return{...state, allCharacter: payload.characters, numPage: payload.page, 
                 cantPage: payload.cantPage};
+
+        case LOADING:
+            return {...state, loading: !state.loading}
 
         default:
             return state;
