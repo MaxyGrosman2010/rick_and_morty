@@ -41,9 +41,9 @@ const validationSignUp = (inputs) => {
 
   if(inputs.password !== inputs.repeat){
     errors.password = 'No match passwords';
-    errors.repeatPassword = 'No match passwords'
+    errors.repeat = 'No match passwords'
   } else if (!inputs.repeat){
-    errors.repeatPassword = 'No match passwords'
+    errors.repeat = 'No match passwords'
   };
 
   return errors;

@@ -1,20 +1,48 @@
+.contains{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: auto;
+	margin-left: auto;
+	position: relative;
+	width: 500px;
+	height: 60px;
+	background-color: #3a5a40;
+	font-size: 0;
+    border-radius: 0px 0px 10px 10px;
+}
+
 .searchBar{
-    border-radius: 5px 0px 0px 5px;
+    width: 250px;
+    height: 35px;
+    border-radius: 8px;
     border: none;
+    margin-right: 20px;
+    background-color: #588157;
+    color: #dad7cd;
 }
 
 .searchBarButton{
-    width: 25%;
+    width: 100px;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 5px;
     display: inline-block;
-    background-color: #17c28e;
-    border-color: #17c28e;
-    color: green;
+    background-color: #588157;
+    border-color: #a3b18a;
+    color: #dad7cd;
+    cursor: pointer;
 }
 
 .random{
-    width: 25%;
+    width: 100px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
     display: inline-block;
-    background-color: #17c28e;
-    border-color: #17c28e;
-    color: green;
+    background-color: #588157;
+    border-color: #a3b18a;
+    color: #dad7cd;
+    cursor: pointer;
 }

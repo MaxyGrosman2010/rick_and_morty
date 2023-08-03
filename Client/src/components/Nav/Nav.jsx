@@ -17,14 +17,15 @@ export default function Nav(){
     };
     return(
         <div className={style.contains} >
-            <Link to='/about'>
-                <button className={style.button} >About</button>
-            </Link>
-            <Link to='/favorites'>
-                <button className={style.button} >Favorites</button>
-            </Link>
-            <button className={style.button} onClick={handleLogout} >Log out</button>
-            <SearchBar />
+            <div >
+                <Link to='/about'>
+                    <button className={style.button} >About</button>
+                </Link>
+                <Link to='/favorites'>
+                    <button className={style.button} >Favorites</button>
+                </Link>
+            </div>
+            <button className={style.button} onClick={handleLogout} >Logout</button>
         </div>
     );
 };

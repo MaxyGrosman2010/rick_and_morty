@@ -44,7 +44,11 @@
     ]
   },
   "react-dotenv": {
-    "whitelist":["REACT_APP_URL", "REACT_APP_ENDPOINTFAV", "REACT_APP_ENDPOINTCHAR",
-    "REACT_APP_ENDPOINTUSER"]
+    "whitelist": [
+      "REACT_APP_URL",
+      "REACT_APP_ENDPOINTFAV",
+      "REACT_APP_ENDPOINTCHAR",
+      "REACT_APP_ENDPOINTUSER"
+    ]
   }
 }

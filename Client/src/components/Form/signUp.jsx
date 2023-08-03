@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {validationSignUp} from '../../validation';
 import axios from 'axios';
 import env from 'react-dotenv';
-import style from './Form.module.css';
+import style from './SignUp.module.css';
 
 const endPointUser = env.REACT_APP_ENDPOINTUSER;
 
@@ -33,10 +33,10 @@ export default function SignUp(){
     return (
         <div className={style.contains} >
             <form className={style.form}  onSubmit={handleSubmit} >
-                <p>Sign Up</p>
+                <h2 className={style.title} >Sign Up</h2>
 
-                <label className={style.usernameLabel} >Name:</label>
-                <input className={style.username} type="text" name="name" 
+                <label className={style.nameLabel} >Name:</label>
+                <input className={style.name} type="text" name="name" 
                 value={signUpData.name} onChange={handleChange} />
                 <p className={style.error} >{errors.name}</p>
 
@@ -50,15 +50,12 @@ export default function SignUp(){
                 value={signUpData.password} onChange={handleChange} />
                 <p className={style.error} >{errors.password}</p>
 
-                <label className={style.passwordLabel} >Repeat Password:</label>
-                <input className={style.password} type="text" name="repeat" 
+                <label className={style.repeatLabel} >Repeat Password:</label>
+                <input className={style.repeat} type="text" name="repeat" 
                 value={signUpData.repeat} onChange={handleChange} />
                 <p className={style.error} >{errors.repeat}</p>
 
-                {Object.values(errors).length === 0 && signUpData.name !== "" && 
-                signUpData.email !== "" && signUpData.password !== "" && 
-                signUpData.repeat !== "" && <button className={style.submit} 
-                name="submit" type="submit">Sign Up</button>}
+                <button className={style.submit} name="submit" type="submit">Sign Up</button>
             </form>
         </div>
     );

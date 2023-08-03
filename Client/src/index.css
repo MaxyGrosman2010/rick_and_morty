@@ -5,8 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: linear-gradient(-225deg, #1a8b36 0%, #2fc5a0 100%);
-  background-image: linear-gradient(to top, #32bb92 0%, #88ec96 100%);
+  background-image: linear-gradient(-225deg, #344e41 0%, #344e41 100%);
+  background-image: linear-gradient(to top, #344e41 0%, #344e41 100%);
   background-attachment: fixed;
   background-repeat: no-repeat;
 }
@@ -15,7 +15,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-/* font-family: "vox", sans-serif;
-  font-weight: 400;
-  font-style: normal; */

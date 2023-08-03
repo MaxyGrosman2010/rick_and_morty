@@ -1,6 +1,6 @@
 import {useDispatch} from "react-redux";
 import {orderCards, filterCards} from "../../../redux/actions/actions";
-import style from '../../Favorites/favorites.module.css';
+import style from './FilterOrderBar.module.css';
 
 export default function FilterOrderBar(){
     const dispatch = useDispatch();

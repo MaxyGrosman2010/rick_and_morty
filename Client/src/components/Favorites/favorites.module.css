@@ -1,23 +1,11 @@
 .contains{
-    display: grid;
-    grid-template-columns: repeat(auto-fill,
-    minmax(230px, 1fr));
-    grid-gap: 50px;
-    align-items: center;
-    justify-content: center;
-    padding: 15px;
-}
-
-.options{
     display: flex;
+    flex-direction: row wrap;
+    justify-content: space-around;
     align-items: center;
-    align-content: space-evenly;
-    justify-content: space-evenly;
-    margin: 5%;
-    border: none;
-}
-
-.selectors{
-    background-color: #69e492;
-    border: none;
+    flex-wrap: wrap;
+    height: 70%;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
 }

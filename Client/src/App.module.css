@@ -1,6 +1,16 @@
 .contains {
-   background-image: rgb(104, 235, 195);
+   background-image: rgb(34, 48, 29);
    align-items:first baseline;
    justify-content: space-evenly;
    text-align: center;
+}
+
+.navBar{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 500px;
+	height: 350px;
+   background-color: #3a5a40;
+   border-radius: 10px;
 }

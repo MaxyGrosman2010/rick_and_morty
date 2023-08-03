@@ -1,0 +1,18 @@
+.contains{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,
+    minmax(230px, 1fr));
+    grid-gap: 50px;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.selectors{
+    margin-top: 15px;
+    margin-right: 15px;
+    background-color: #588157;
+    color: #dad7cd;
+}

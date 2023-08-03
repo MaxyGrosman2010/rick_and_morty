@@ -44,7 +44,7 @@ export default function Form(){
     return(
         <div className={style.contains} >
             <form className={style.form} onSubmit={handleSubmit}>
-                <p>Login</p>
+                <h2 className={style.title} >Login</h2>
 
                 <label className={style.usernameLabel} >Email: </label>
                 <input className={style.username} name="email" type="text" 
@@ -58,14 +58,15 @@ export default function Form(){
                 onChange={() => setShow(!isShow)}/>
                 <p className={style.error} >{errors.password}</p>
 
-                {Object.keys(errors).length === 0 && userData.email !== "" && 
-                userData.password !== "" &&  <button className={style.submit} 
-                name="submit" type="submit">Log In</button>}
+                <button className={style.submit} 
+                name="submit" type="submit">Log In</button>
+                
+                <Link to={'/signUp'} >
+                    <button className={style.move} >Sign Up</button>
+                </Link>
             </form>
 
-            <Link to={'/signUp'} >
-                <button className={style.move} >Sign Up</button>
-            </Link>
+            
         </div>
     );
 };

@@ -18,11 +18,13 @@ export default function SearchBar() {
       setName('');
    };
    
-   return (   
-      <div>
-         <input className={style.searchBar} type="search" name="name" value={name} 
-         onChange={handleChange} />
-         <button className={style.searchBarButton} onClick={handleSubmit} >Agregar</button>
-         <button className={style.random} onClick={handleReload} >Reset</button>
+   return (
+      <div className={style.contains} >
+         <div>
+            <input className={style.searchBar} type="search" name="name" value={name} 
+            onChange={handleChange} />
+            <button className={style.searchBarButton} onClick={handleSubmit} >Agregar</button>
+            <button className={style.random} onClick={handleReload} >Reset</button>
+         </div>
       </div>
 )};

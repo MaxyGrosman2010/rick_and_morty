@@ -46,13 +46,12 @@ export default function Card({id, name, status, species, gender, origin, image})
 
          <Link className={style.link} to={`/detail/${id}`}>
             <h2 className={style.name} >{name}</h2>
+            <h2 className={style.text} >{status}</h2>
+            <h2 className={style.text} >{species}</h2>
+            <h2 className={style.text} >{gender}</h2>
+            <h2 className={style.text}>{origin}</h2>
+            <img className={style.image} src={image} alt={name}/>
          </Link>
-
-         <h2 className={style.text} >{status}</h2>
-         <h2 className={style.text} >{species}</h2>
-         <h2 className={style.text} >{gender}</h2>
-         <h2 className={style.text}>{origin}</h2>
-         <img className={style.image} src={image} alt={name}/>
 
       </div>
 
