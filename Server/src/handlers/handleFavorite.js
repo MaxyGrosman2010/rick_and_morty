@@ -19,21 +19,12 @@ const postFav = async(req, res) => {
 
 const deleteFav = async(req, res) => {
     try{
-        const {id, page} = req.query;
+        const {id} = req.query;
         if(!id) return res.status(404).json({message: "There isn't an id here"});
         await deleteFavorite(id);
         const all = await allFavorites(req.id);
-        let characters = all.map((favorite) => {
-            return {id: favorite.id, name: favorite.name, status: favorite.status, 
-                species: favorite.species, gender: favorite.gender, 
-                origin: favorite.origin, image: favorite.image}});
-        let cantPage = Math.ceil(characters.length / 6);
-        let from = page - 1;
-        let response = {
-            characters: characters.slice(from * 6, page * 6),
-            cantPage
-        };
-        return res.status(200).json(response);
+        console.log(all);
+        return res.status(200).json("The character was remove from favorites");
     }catch(error) {res.status(404).json({error: error});};
 };
 
