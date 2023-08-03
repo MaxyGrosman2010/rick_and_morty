@@ -1,5 +1,5 @@
-import {ADD_FAV, REMOVE_FAV, FILTER_CARDS, ORDER_CARDS, ON_SEARCH, ON_CLOSE, 
-    GET_DETAIL_CHARACTER, CHARACTER_PAGE, LOADING, RESET_PAGE} from "./types";
+import {ADD_FAV, REMOVE_FAV, PAGE_FAV, FILTER_CARDS, ORDER_CARDS, ON_SEARCH, ON_CLOSE, 
+    GET_DETAIL_CHARACTER, CHARACTER_PAGE, RESET_PAGE, RESET_PAGE_FAV} from "./types";
 import headers from '../../utils/headers';
 import axios from "axios";
 import env from 'react-dotenv';
@@ -21,6 +21,15 @@ export const removeFav = (send) => {
             let{data} = await axios.delete(`${endPointFav}delete`, send, headers());
             if(data) return dispatch({type: REMOVE_FAV, payload: data});
         }catch(error){window.alert("Remove Favorite did not work:", error)};
+    };
+};
+
+export const pageFav = (page) => {
+    return async(dispatch) => {
+        try{
+            let {data} = await axios.get(`${endPointFav}page?page=${page}`, headers());
+            return dispatch({type: PAGE_FAV, payload: data});
+        }catch(error){window.alert('Please send a page number:', error)};
     };
 };
 
@@ -76,10 +85,10 @@ export const getPageCharacter = (page) => {
     };
 };
 
-export const changeLoading = () => {
-    return {type: LOADING};
-};
-
 export const resetPage = () => {
     return {type: RESET_PAGE};
+};
+
+export const resetPageFav = () => {
+    return {type: RESET_PAGE_FAV};
 };

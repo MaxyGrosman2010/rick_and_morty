@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {useDispatch} from 'react-redux';
-import {onSearch, changeLoading} from "../../../redux/actions/actions";
+import {onSearch} from "../../../redux/actions/actions";
 import style from './SearchBar.module.css';
 
 export default function SearchBar() {
@@ -9,13 +9,11 @@ export default function SearchBar() {
 
    const handleChange = (event) => setName(event.target.value);
    const handleReload = () => {
-      dispatch(changeLoading());
       setName(' ');
       dispatch(onSearch(name));
       setName('');
    };
    const handleSubmit = () => {
-      dispatch(changeLoading());
       dispatch(onSearch(name));
       setName('');
    };

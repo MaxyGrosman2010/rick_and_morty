@@ -1,16 +1,14 @@
 import {useDispatch} from "react-redux";
-import {orderCards, filterCards, changeLoading} from "../../../redux/actions/actions";
+import {orderCards, filterCards} from "../../../redux/actions/actions";
 import style from '../../Favorites/favorites.module.css';
 
 export default function FilterOrderBar(){
     const dispatch = useDispatch();
 
     const handleOrder = (event) => {
-        dispatch(changeLoading());
         dispatch(orderCards(event.target.value));
     };
     const handleFilter = (event) => {
-        dispatch(changeLoading());
         dispatch(filterCards(event.target.value))
     };
 

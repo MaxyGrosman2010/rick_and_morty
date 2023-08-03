@@ -13,6 +13,7 @@ export default function Paginate(){
 
     return(
         <div className={style.contains}>
+            {cantPage === 0 ? null : <div>
             {numPage !== 1 ? (<button className={style.button} onClick={first}>First
             </button>) : null}
             {numPage > 1 ? (<button className={style.button} onClick={prev}>{"<-"}</button>
@@ -22,6 +23,7 @@ export default function Paginate(){
                 </button>) : null}
             {numPage < cantPage ? (<button className={style.button} onClick={last}>Last
                 </button>) : null }
+            </div>}
         </div>
     );
 };

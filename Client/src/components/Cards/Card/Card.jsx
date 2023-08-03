@@ -1,9 +1,8 @@
+import {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {addFav, removeFav} from '../../../redux/actions/actions';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { onClose } from '../../../redux/actions/actions';
+// import { onClose } from '../../../redux/actions/actions';
 import style from './Card.module.css';
 
 export default function Card({id, name, status, species, gender, origin, image}){
@@ -39,7 +38,7 @@ export default function Card({id, name, status, species, gender, origin, image})
 
       <div key={id} className={style.contains} >
 
-         <button className={style.button} onClick={() => dispatch(onClose(id))} >X</button>
+         {/* <button className={style.button} onClick={() => dispatch(onClose(id))} >X</button> */}
 
          {isFavorite ? 
          (<button className={style.button} onClick={handleFavorite}>❤️</button>) 

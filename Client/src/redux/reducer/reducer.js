@@ -1,22 +1,26 @@
-import {ADD_FAV, REMOVE_FAV, FILTER_CARDS, ORDER_CARDS, ON_CLOSE, ON_SEARCH, 
-    GET_DETAIL_CHARACTER, CHARACTER_PAGE, LOADING, RESET_PAGE} from "../actions/types";
+import {ADD_FAV, REMOVE_FAV, PAGE_FAV, FILTER_CARDS, ORDER_CARDS, ON_CLOSE, ON_SEARCH, 
+    GET_DETAIL_CHARACTER, CHARACTER_PAGE, LOADING, RESET_PAGE, RESET_PAGE_FAV
+} from "../actions/types";
 
 const initialState ={
     allFavorite: [],
     allCharacter: [],
     detailCharacter: {},
     numPage: 1,
+    favPage: 1,
     cantPage: 0,
-    loading: false,
 };
 
 export const rootReducer = (state = initialState, {type, payload}) => {
     switch(type){
         case ADD_FAV:
-            return {...state, allFavorite: payload};
+            return state;
 
         case REMOVE_FAV:
-            return {...state, allFavorite: payload};
+            return state;
+
+        case PAGE_FAV:
+            return {...state, allFavorite: payload.characters, cantPage: payload.cantPage};
 
         case FILTER_CARDS:
             return{...state, allCharacter: payload.characters, cantPage: payload.cantPage};
@@ -46,6 +50,9 @@ export const rootReducer = (state = initialState, {type, payload}) => {
 
         case RESET_PAGE:
             return {...state, numPage: 1};
+
+        case RESET_PAGE_FAV:
+            return {...state, favPage:1};
 
         default:
             return state;
