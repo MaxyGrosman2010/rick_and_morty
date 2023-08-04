@@ -1,5 +1,5 @@
 const express = require('express');
-const {postFav, deleteFav, getPageFavorites} = require('../handlers/handleFavorite');
+const {postFav, deleteFav, getPageFavorites} = require('../handlers/handlerCharacter');
 const verifyToken = require('../middleware/verifyToken');
 const router = express.Router();
 

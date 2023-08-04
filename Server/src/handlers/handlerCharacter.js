@@ -1,7 +1,9 @@
 const axios = require('axios');
 require('dotenv').config();
-const {findCharacterById, findCharacterByName, 
-    loadRoundOfChar} = require('../controllers/indexCharacter');
+const {findCharacterById, findCharacterByName, loadRoundOfChar, 
+    findUser} = require('../controllers/indexCharacter');
+const {addFavorite, allFavorites, findFavorite, deleteFavorite, 
+    linkFavoriteUser} = require('../controllers/indexFavorite');
 const {URL_API} = process.env;
 var charactersCache = [];
 var showCharacters = [];
@@ -76,7 +78,7 @@ const getCharacterName = async(req, res) => {
     }catch(error){res.status(500).json(error)};
 };
 
-const getCharacterGender = async(req, res) => {
+const getCharacterGender = (req, res) => {
     try{
         const {gender} = req.query;
         if(!gender) return res.status(404).json({error: "Please send a gender"});
@@ -87,17 +89,64 @@ const getCharacterGender = async(req, res) => {
     }catch(error){res.status(500).json(error)};
 };
 
-const getSortedCharacters = async(req, res) => {
+const getSortedCharacters = (req, res) => {
     try{
         const {sort} = req.query;
-        sort === "" ? showCharacters.sort((a,b) => a.id - b.id) : sort === "A" ? 
-        showCharacters.sort((a,b) => a.name.localeCompare(b.name)) : 
+        sort === "A" ? showCharacters.sort((a,b) => a.name.localeCompare(b.name)) : 
         showCharacters.sort((a,b) => b.name.localeCompare(a.name));
-
         let response = {characters: showCharacters.slice(0, 6)};
         return res.status(200).json(response);
     }catch(error){return res.status(500).json(error)};
 };
 
+const cleanShow = (req, res) => {
+    showCharacters = [];
+    return res.status(200).json({message: "The show list is clean"})
+};
+
+const postFav = async(req, res) => {
+    try{
+        const {id, status, name, species, origin, image, gender} = req.body;
+        if(!id || !name || !status || !species || !gender || !origin || !image) 
+            return res.status(404).json({message: "The require information is missing"});
+        const exist = await findFavorite(id);
+        if(exist) return res.status(404).json({error: "Please send a character that isn't a favorite"});
+        await addFavorite(id, status, name, species, origin, image, gender);
+        let user = await findUser(req.email);
+        let favorite = await findFavorite(id);
+        await linkFavoriteUser(user, favorite);
+        return res.status(200).json({message: "It was added to favorites"});
+    }catch(error) {res.status(404).json({message: error.message});};
+};
+
+const deleteFav = async(req, res) => {
+    try{
+        const {id} = req.query;
+        if(!id) return res.status(404).json({message: "There isn't an id here"});
+        await deleteFavorite(id);
+        const all = await allFavorites(req.id);
+        console.log(all);
+        return res.status(200).json("The character was remove from favorites");
+    }catch(error) {res.status(404).json({error: error});};
+};
+
+const getPageFavorites = async(req, res) => {
+    try{
+        let {page} = req.query;
+        let all = await allFavorites(req.id);
+        let characters = all.map((favorite) => {
+            return {id: favorite.id, name: favorite.name, status: favorite.status, 
+                species: favorite.species, gender: favorite.gender, 
+                origin: favorite.origin, image: favorite.image}});
+        let cantPage = Math.ceil(characters.length / 6);
+        let from = page - 1;
+        let response = {
+            characters: characters.slice(from * 6, page * 6),
+            cantPage
+        };
+        return res.status(200).json(response);
+    }catch(error){res.status(404).json({error: error})};
+};
+
 module.exports = {allCharacters, getCharById, getCharactersPage, getCharacterName,
-    getCharacterGender, getSortedCharacters};
+    getCharacterGender, getSortedCharacters, cleanShow, postFav, deleteFav, getPageFavorites};
