@@ -1,5 +1,6 @@
 import {ADD_FAV, REMOVE_FAV, PAGE_FAV, FILTER_CARDS, ORDER_CARDS, ON_SEARCH, ON_CLOSE, 
-    GET_DETAIL_CHARACTER, CHARACTER_PAGE, RESET_PAGE, RESET_PAGE_FAV} from "./types";
+    GET_DETAIL_CHARACTER, CHARACTER_PAGE, RESET_PAGE, RESET_PAGE_FAV, 
+    CLEAN_PAGE} from "./types";
 import headers from '../../utils/headers';
 import axios from "axios";
 import env from 'react-dotenv';
@@ -32,6 +33,8 @@ export const pageFav = (page) => {
         }catch(error){window.alert('Please send a page number:', error)};
     };
 };
+
+export const cleanPage = () => {};
 
 export const filterCards = (gender) => {
     return async(dispatch) => {

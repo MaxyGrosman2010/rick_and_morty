@@ -1,10 +1,12 @@
+import {useEffect, useState} from "react";
+import {useNavigate, Link} from "react-router-dom";
+import env from 'react-dotenv';
 import {validationLogin} from "../../validation";
-import {useState} from "react";
 import style from './Form.module.css';
 import axios from 'axios';
-import {setToken, setUser} from "../../utils/localStorage";
-import env from 'react-dotenv';
-import {useNavigate, Link} from "react-router-dom";
+import {setToken, setUser, getUser} from "../../utils/localStorage";
+
+
 
 const endPointUser = env.REACT_APP_ENDPOINTUSER;
 
@@ -13,6 +15,11 @@ export default function Form(){
     const [errors, setErrors] = useState({});
     const [isShow, setShow] = useState(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        let user = getUser();
+        if(user) navigate('/home');
+    }, []);
 
     const handleChange = (event) => {
         setErrors(validationLogin({...userData, [event.target.name]: event.target.value}));
@@ -42,31 +49,34 @@ export default function Form(){
     };
 
     return(
-        <div className={style.contains} >
-            <form className={style.form} onSubmit={handleSubmit}>
-                <h2 className={style.title} >Login</h2>
+        <div className={style.background} >
+            <Link to="/" >
+               <img src='rickAndMorty.png' alt='logo' />
+            </Link>
+            <div className={style.contains} >
+                <form className={style.form} onSubmit={handleSubmit}>
+                    <h2 className={style.title} >Login</h2>
 
-                <label className={style.usernameLabel} >Email: </label>
-                <input className={style.username} name="email" type="text" 
-                value={userData.email} onChange={handleChange}/>
-                <p className={style.error} >{errors.email}</p>
+                    <label className={style.usernameLabel} >Email: </label>
+                    <input className={style.username} name="email" type="text" 
+                    value={userData.email} onChange={handleChange}/>
+                    <p className={style.error} >{errors.email}</p>
 
-                <label className={style.passwordLabel} >Password: </label>
-                <input className={style.password} name="password" type={isShow ? "text" : 
-                "password"} value={userData.password} onChange={handleChange}/>
-                <input className={style.checkbox} type="checkbox" checked={isShow} 
-                onChange={() => setShow(!isShow)}/>
-                <p className={style.error} >{errors.password}</p>
+                    <label className={style.passwordLabel} >Password: </label>
+                    <input className={style.password} name="password" type={isShow ? "text" : 
+                    "password"} value={userData.password} onChange={handleChange}/>
+                    <input className={style.checkbox} type="checkbox" checked={isShow} 
+                    onChange={() => setShow(!isShow)}/>
+                    <p className={style.error} >{errors.password}</p>
 
-                <button className={style.submit} 
-                name="submit" type="submit">Log In</button>
-                
-                <Link to={'/signUp'} >
-                    <button className={style.move} >Sign Up</button>
-                </Link>
-            </form>
-
-            
+                    <button className={style.submit} 
+                    name="submit" type="submit">Log In</button>
+                    
+                    <Link to={'/signUp'} >
+                        <button className={style.move} >Sign Up</button>
+                    </Link>
+                </form>
+            </div>
         </div>
     );
 };

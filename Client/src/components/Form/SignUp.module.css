@@ -1,3 +1,14 @@
+.background{
+    position: fixed;
+    height: 150%;
+    width: 100%;
+    background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.OcQOG_rXO7q9CkvJi-au7wHaEK%26pid%3DApi&f=1&ipt=62f3978222cf166cdd93ba09abf851ec6b0ce84214976e5fdc2080c99f2a77fa&ipo=images');
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    z-index: 1000;
+}
+
 .contains{
     display: flex;
     justify-content: center;
@@ -5,8 +16,6 @@
     margin-top: 140px;
     margin-left: auto;
     margin-right: auto;
-    background-image: linear-gradient(-225deg, 344e41 0%, 344e41 100%);
-    background-image: linear-gradient(to top, 344e41 0%, 344e41 100%);
     background-attachment: fixed;
     background-repeat: no-repeat;
     font-family: 'Vibur', cursive;
@@ -15,7 +24,7 @@
 }
 
 .title{
-    color: #3a5a40;
+    color: #000000;
 }
 
 .form {
@@ -24,58 +33,60 @@
     height: auto;
     border-radius: 5px;
     margin: 2% auto;
-    box-shadow: 0 9px 50px linear-gradient(-225deg, #3a5a40 50%, #3a5a40 50%);
     padding: 2%;
-    background-image: linear-gradient(-225deg, #588157 50%, #588157 50%);
+    background-color: #0000003d;
 }
 
 .username{
-    background: #dad7cd;
-    color: #a3b18a;
+    background: #000000;
+    color: #ffffff;
     padding: 14.5px 0px 15px 9px;
     border-radius: 5px 0px 0px 5px;
     margin-left: 27%;
 }
 
 .usernameLabel{
-    color: #a3b18a; 
+    color: #000000;
+    text-shadow: #000000;
 }
 
 .name{
-    background: #dad7cd;
-    color: #a3b18a;
+    background: #000000;
+    color: #ffffff;
     padding: 14.5px 0px 15px 9px;
     border-radius: 5px 0px 0px 5px;
     margin-left: 27%;
 }
 
 .nameLabel{
-    color: #a3b18a;
-
+    color: #000000;
+    text-shadow: #000000;
 }
 
 .password{
-    background: #dad7cd;
-    color: #a3b18a;
+    background: #000000;
+    color: #ffffff;
     padding: 14.5px 0px 15px 9px;
     border-radius: 5px 0px 0px 5px;
     margin-left: 20%;
 }
 
 .passwordLabel{
-    color: #a3b18a;
+    color: #000000;
+    text-shadow: #000000;
 }
 
 .repeat{
-    background: #dad7cd;
-    color: #a3b18a;
+    background: #000000;
+    color: #ffffff;
     padding: 14.5px 0px 15px 9px;
     border-radius: 5px 0px 0px 5px;
     margin-left: 5%;
 }
 
 .repeatLabel{
-    color: #a3b18a;
+    color: #000000;
+    text-shadow: #000000;
 }
 
 .error{

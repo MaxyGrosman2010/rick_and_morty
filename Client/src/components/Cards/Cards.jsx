@@ -1,6 +1,6 @@
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {getPageCharacter, orderCards, resetPage} from '../../redux/actions/actions';
+import {getPageCharacter, resetPage, cleanPage} from '../../redux/actions/actions';
 import Card from './Card/Card';
 import Paginate from './Paginate/Paginate';
 import FilterOrderBar from '../Nav/FilterOrderBar/FilterOrderBar';
@@ -15,7 +15,7 @@ export default function Cards() {
             dispatch(getPageCharacter(numPage));
 
             return () => {
-                  dispatch(orderCards(""));
+                  dispatch(cleanPage());
                   dispatch(resetPage());
             };
       }, []);
@@ -24,10 +24,12 @@ export default function Cards() {
             <div>
                   <FilterOrderBar />
                   <div className={style.contains} >
-                  {allCharacter && allCharacter.map(character => <Card id={character.id} 
-                        key={character.id} name={character.name} status={character.status} 
-                        species={character.species} gender={character.gender} 
-                        origin={character.origin} image={character.image} />)}
+                  {allCharacter && allCharacter.map(character => <div> 
+                              <Card id={character.id} key={character.id} name={character.name} 
+                              status={character.status} species={character.species} 
+                              gender={character.gender} origin={character.origin}
+                              image={character.image} />
+                        </div>)}
                   </div>
                   <div>
                         <Paginate />

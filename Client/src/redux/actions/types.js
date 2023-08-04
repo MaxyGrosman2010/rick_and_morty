@@ -15,3 +15,4 @@ export const LOADING = "LOADING";
 //Page management
 export const RESET_PAGE = "RESET_PAGE";
 export const RESET_PAGE_FAV = "RESET_PAGE_FAV";
+export const CLEAN_PAGE = "CLEAN_PAGE";
